@@ -62,5 +62,6 @@ export const placeholderData = {
       description: "Focus on Artificial Intelligence and Systems Engineering.",
       alignment: "right"
     }
-  ]
+  ],
+  files: []
 };
