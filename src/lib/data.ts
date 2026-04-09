@@ -13,7 +13,7 @@ export const placeholderData = {
       tech_stack: ["Python", "OpenAI", "PostgreSQL", "FastAPI"],
       demo_url: "#",
       repo_url: "#",
-      review_quote: "Saved my team 20 hours a week in manual data entry.",
+      review_text: "Saved my team 20 hours a week in manual data entry.",
       review_author: "Product Manager @ TechStartup",
     },
     {
@@ -23,18 +23,18 @@ export const placeholderData = {
       tech_stack: ["C++", "PyTorch", "TensorRT", "React"],
       demo_url: "#",
       repo_url: "#",
-      review_quote: "Incredibly low latency, exactly what we needed for the factory floor.",
+      review_text: "Incredibly low latency, exactly what we needed for the factory floor.",
       review_author: "Lead Engineer @ Manufacturing Inc",
     }
   ],
   learning: {
     current: [
-      { id: "1", title: "Distributed Systems Engineering", category: "Backend", progress: 65 },
-      { id: "2", title: "Advanced RAG Techniques", category: "AI", progress: 80 },
+      { id: "1", title: "Distributed Systems Engineering", category: "Backend", progress_percent: 65, status: "current" },
+      { id: "2", title: "Advanced RAG Techniques", category: "AI", progress_percent: 80, status: "current" },
     ],
     completed: [
-      { id: "3", title: "Deep Learning Specialization", category: "AI" },
-      { id: "4", title: "Cloud Architecture cert", category: "Infrastructure" },
+      { id: "3", title: "Deep Learning Specialization", category: "AI", progress_percent: 100, status: "completed" },
+      { id: "4", title: "Cloud Architecture cert", category: "Infrastructure", progress_percent: 100, status: "completed" },
     ]
   },
   careerJourney: [
