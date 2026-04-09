@@ -29,12 +29,12 @@ export const placeholderData = {
   ],
   learning: {
     current: [
-      { id: "1", title: "Distributed Systems Engineering", category: "Backend", progress_percent: 65, status: "current" },
-      { id: "2", title: "Advanced RAG Techniques", category: "AI", progress_percent: 80, status: "current" },
+      { id: "1", title: "Distributed Systems Engineering", category: "Backend", progress_percent: 65, status: "current" as "current" },
+      { id: "2", title: "Advanced RAG Techniques", category: "AI", progress_percent: 80, status: "current" as "current" },
     ],
     completed: [
-      { id: "3", title: "Deep Learning Specialization", category: "AI", progress_percent: 100, status: "completed" },
-      { id: "4", title: "Cloud Architecture cert", category: "Infrastructure", progress_percent: 100, status: "completed" },
+      { id: "3", title: "Deep Learning Specialization", category: "AI", progress_percent: 100, status: "completed" as "completed" },
+      { id: "4", title: "Cloud Architecture cert", category: "Infrastructure", progress_percent: 100, status: "completed" as "completed" },
     ]
   },
   careerJourney: [
