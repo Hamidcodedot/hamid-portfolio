@@ -22,10 +22,10 @@ export default function Resume({ files }: { files?: FileRecord[] }) {
   return (
     <section id="resume" className="py-24">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold font-syne mb-4 text-white">
+        <h2 className="text-4xl md:text-5xl font-bold font-syne mb-4 text-gray-900 dark:text-white">
           Resume & CV.
         </h2>
-        <p className="text-gray-400 text-lg mb-16 max-w-2xl leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400 text-lg mb-16 max-w-2xl leading-relaxed">
           Need a formal document? Grab a copy of my resume or full Curriculum Vitae
           detailing my academic background and professional experience.
         </p>
@@ -36,13 +36,13 @@ export default function Resume({ files }: { files?: FileRecord[] }) {
             href={resumeUrl}
             target="_blank"
             rel="noreferrer"
-            className="flex-1 p-8 bg-[#1f1f23]/60 border border-[#00e5c0] rounded-xl flex items-center space-x-6 hover:-translate-y-1 transition-transform group"
-            style={{ boxShadow: '0 0 20px rgba(0,229,192,0.3)', backdropFilter: 'blur(10px)' }}
+            className="flex-1 p-8 bg-white/40 dark:bg-[#1f1f23]/60 border border-teal-500/50 dark:border-[#00e5c0] rounded-xl flex items-center space-x-6 hover:-translate-y-1 transition-transform group"
+            style={{ boxShadow: '0 4px 30px rgba(0,229,192,0.1)', backdropFilter: 'blur(10px)' }}
           >
-            <FileText size={40} className="text-[#00e5c0] opacity-80 group-hover:scale-110 transition-transform" />
+            <FileText size={40} className="text-teal-600 dark:text-[#00e5c0] opacity-80 group-hover:scale-110 transition-transform" />
             <div>
-              <h3 className="text-2xl font-bold text-white mb-1 font-syne">One-Page Resume</h3>
-              <p className="text-[10px] text-gray-300 font-bold tracking-widest uppercase">PDF FORMAT</p>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1 font-syne">One-Page Resume</h3>
+              <p className="text-[10px] text-gray-500 dark:text-gray-300 font-bold tracking-widest uppercase">PDF FORMAT</p>
             </div>
           </a>
 
