@@ -4,8 +4,21 @@
 
 @layer base {
   :root {
+    --background: #f8fafc; /* very light blue-gray */
+    --foreground: #0f172a;
+    --background-blob-1: rgba(0, 229, 192, 0.4);
+    --background-blob-2: rgba(59, 130, 246, 0.4);
+    --glass-border: rgba(0, 0, 0, 0.05);
+    --glass-bg: rgba(255, 255, 255, 0.6);
+  }
+  
+  .dark {
     --background: #050505;
     --foreground: #ffffff;
+    --background-blob-1: rgba(0, 229, 192, 0.15);
+    --background-blob-2: rgba(30, 58, 138, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(255, 255, 255, 0.03);
   }
   
   html {
@@ -15,7 +28,7 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
-    @apply antialiased selection:bg-[#00e5c0]/30 selection:text-white;
+    @apply antialiased selection:bg-teal-500/30 selection:text-teal-900 dark:selection:text-white transition-colors duration-500;
   }
 
   /* Sleek Scrollbar */
@@ -26,10 +39,11 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #222;
+    @apply bg-gray-300 dark:bg-[#222];
     border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #333;
+    @apply bg-gray-400 dark:bg-[#333];
   }
 }
+
