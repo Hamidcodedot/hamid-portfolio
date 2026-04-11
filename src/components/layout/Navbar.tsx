@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import clsx from "clsx";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -38,7 +39,7 @@ export default function Navbar() {
       className={clsx(
         "fixed top-0 w-full z-50 transition-all duration-300 border-b",
         isScrolled
-          ? "bg-[#0a0a0a]/80 backdrop-blur-md border-gray-800 py-3"
+          ? "bg-white/30 dark:bg-black/30 backdrop-blur-xl border-black/5 dark:border-white/10 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.1)]"
           : "bg-transparent border-transparent py-5"
       )}
     >
@@ -54,7 +55,7 @@ export default function Navbar() {
               <a
                 href={link.href}
                 onClick={(e) => scrollTo(e, link.href)}
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
               >
                 {link.name}
               </a>
@@ -62,25 +63,30 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-gray-400 hover:text-white"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Controls */}
+        <div className="flex items-center space-x-4">
+          <ThemeToggle />
+          
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-[#0a0a0a] border-b border-gray-800 shadow-2xl">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-black/5 dark:border-white/10 shadow-2xl">
           <ul className="flex flex-col py-4 px-6 space-y-4">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
                   href={link.href}
                   onClick={(e) => scrollTo(e, link.href)}
-                  className="block text-gray-400 hover:text-white text-lg"
+                  className="block text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white text-lg"
                 >
                   {link.name}
                 </a>

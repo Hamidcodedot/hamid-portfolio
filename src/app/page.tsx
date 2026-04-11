@@ -25,9 +25,9 @@ export default async function Home() {
       <Connect />
       
       {/* Footer */}
-      <footer className="py-8 border-t border-gray-800/20 mt-12 bg-[#050505]">
+      <footer className="py-8 border-t border-black/5 dark:border-white/10 mt-12 bg-white/10 dark:bg-black/10 backdrop-blur-md relative z-10">
         <div className="max-w-6xl mx-auto px-6 flex justify-center items-center">
-          <p className="text-gray-600 text-sm font-syne font-medium tracking-widest uppercase">
+          <p className="text-gray-600 dark:text-gray-400 text-sm font-syne font-medium tracking-widest uppercase">
             © {new Date().getFullYear()} Hamid
           </p>
         </div>
