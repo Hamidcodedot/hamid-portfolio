@@ -25,6 +25,8 @@ export default function About({ data }: { data: any }) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            className="lg:col-span-8"
+          >
             <div className="bg-white/40 dark:bg-black/40 backdrop-blur-md border border-black/5 dark:border-white/10 rounded-2xl p-8 shadow-[0_4px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.2)]">
               {data?.bio ? (
                 <p className="text-gray-700 dark:text-gray-300 text-lg md:text-xl leading-relaxed font-light">
