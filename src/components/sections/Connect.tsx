@@ -105,8 +105,8 @@ export default function Connect() {
             viewport={{ once: true }}
             className="flex justify-center md:justify-end items-center gap-6"
           >
-              {/* GitHub Circuit */}
-             <a href="#" className="relative group w-24 h-24 flex justify-center items-center hover:-translate-y-1 transition-transform">
+             {/* GitHub Circuit */}
+             <a href="https://github.com/Hamidcodedot" target="_blank" rel="noopener noreferrer" className="relative group w-24 h-24 flex justify-center items-center hover:-translate-y-1 transition-transform">
                <svg className="absolute inset-0 w-full h-full text-teal-500 opacity-20 group-hover:opacity-60 transition-opacity" viewBox="0 0 100 100">
                   <path d="M50 10 L50 20 M50 80 L50 90 M10 50 L20 50 M80 50 L90 50 M25 25 L35 35 M75 75 L65 65 M25 75 L35 65 M75 25 L65 35" stroke="currentColor" strokeWidth="1.5" fill="none" />
                   <circle cx="50" cy="10" r="2" fill="currentColor" />
@@ -120,7 +120,7 @@ export default function Connect() {
              </a>
 
              {/* LinkedIn Circuit */}
-             <a href="#" className="relative group w-24 h-24 flex justify-center items-center hover:-translate-y-1 transition-transform">
+             <a href="https://www.linkedin.com/in/hamid-shahid-2b0448330" target="_blank" rel="noopener noreferrer" className="relative group w-24 h-24 flex justify-center items-center hover:-translate-y-1 transition-transform">
                <svg className="absolute inset-0 w-full h-full text-teal-500 opacity-20 group-hover:opacity-60 transition-opacity" viewBox="0 0 100 100">
                   <path d="M40 10 L40 25 M60 10 L60 25 M10 40 L25 40 M10 60 L25 60 M40 90 L40 75 M60 90 L60 75 M90 40 L75 40 M90 60 L75 60" stroke="currentColor" strokeWidth="1.5" fill="none" />
                   <circle cx="40" cy="10" r="2" fill="currentColor" />
@@ -134,7 +134,7 @@ export default function Connect() {
              </a>
 
              {/* Twitter Circuit */}
-             <a href="#" className="relative group w-24 h-24 flex justify-center items-center hover:-translate-y-1 transition-transform">
+             <a href="https://x.com/ch_hamid77" target="_blank" rel="noopener noreferrer" className="relative group w-24 h-24 flex justify-center items-center hover:-translate-y-1 transition-transform">
                <svg className="absolute inset-0 w-full h-full text-teal-500 opacity-20 group-hover:opacity-60 transition-opacity" viewBox="0 0 100 100">
                   <path d="M20 20 L80 80 M80 20 L20 80" stroke="currentColor" strokeWidth="2" fill="none" />
                </svg>

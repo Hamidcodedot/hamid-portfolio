@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   const socialLinks = [
-    { icon: <Github size={20} />, href: "#", name: "GitHub" },
-    { icon: <Linkedin size={20} />, href: "#", name: "LinkedIn" },
-    { icon: <Twitter size={20} />, href: "#", name: "Twitter" },
-    { icon: <Mail size={20} />, href: "#", name: "Email" },
+    { icon: <Github size={20} />, href: "https://github.com/Hamidcodedot", name: "GitHub" },
+    { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/hamid-shahid-2b0448330", name: "LinkedIn" },
+    { icon: <Twitter size={20} />, href: "https://x.com/ch_hamid77", name: "Twitter" },
+    { icon: <Mail size={20} />, href: "mailto:iamhamid940@gmail.com", name: "Email" },
   ];
 
   return (
