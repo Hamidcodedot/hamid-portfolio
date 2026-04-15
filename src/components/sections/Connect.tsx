@@ -37,14 +37,14 @@ export default function Connect() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden z-10">
+    <section id="contact" className="py-16 md:py-24 relative overflow-hidden z-10">
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <h2 className="text-3xl md:text-5xl font-bold font-syne mb-16 text-gray-900 dark:text-white text-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        <h2 className="text-3xl md:text-5xl font-bold font-syne mb-10 md:mb-16 text-gray-900 dark:text-white text-center">
           Connect With Me<span className="text-teal-500">.</span>
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-center">
           {/* Left Form */}
           <motion.form 
             initial={{ opacity: 0, x: -20 }}
@@ -103,7 +103,7 @@ export default function Connect() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex justify-center md:justify-end items-center gap-6"
+            className="flex justify-center items-center gap-4 sm:gap-6 flex-wrap"
           >
              {/* GitHub Circuit */}
              <a href="https://github.com/Hamidcodedot" target="_blank" rel="noopener noreferrer" className="relative group w-24 h-24 flex justify-center items-center hover:-translate-y-1 transition-transform">

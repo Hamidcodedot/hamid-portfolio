@@ -23,13 +23,13 @@ export default function Learning({ data }: { data: { current: LearningItem[], co
   const completedItems = data?.completed || [];
 
   return (
-    <section id="learning" className="py-24 border-t border-black/5 dark:border-white/10 relative z-10">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl md:text-5xl font-bold font-syne mb-12 text-gray-900 dark:text-white">
+    <section id="learning" className="py-16 md:py-24 border-t border-black/5 dark:border-white/10 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <h2 className="text-3xl md:text-5xl font-bold font-syne mb-8 md:mb-12 text-gray-900 dark:text-white">
           Knowledge Base<span className="text-teal-500">.</span>
         </h2>
 
-        <div className="flex space-x-2 border-b border-black/10 dark:border-white/10 mb-10 w-max">
+        <div className="flex flex-wrap border-b border-black/10 dark:border-white/10 mb-8 md:mb-10">
           <button
             onClick={() => setActiveTab("current")}
             className={clsx(
@@ -60,7 +60,7 @@ export default function Learning({ data }: { data: { current: LearningItem[], co
           {activeTab === "current" && (
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="grid md:grid-cols-2 gap-6 max-h-[450px] overflow-y-auto pr-4"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-h-[450px] overflow-y-auto pr-2 sm:pr-4"
             >
               {currentItems.map((item) => (
                 <div key={item.id} className="p-6 bg-white/40 dark:bg-black/40 backdrop-blur-md border border-black/5 dark:border-white/10 rounded-xl hover:border-teal-500/30 transition-colors shadow-[0_4px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.2)]">

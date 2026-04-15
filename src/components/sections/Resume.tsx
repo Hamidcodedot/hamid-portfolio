@@ -20,17 +20,17 @@ export default function Resume({ files }: { files?: FileRecord[] }) {
   const resumeUrl = getFileUrl("resume");
 
   return (
-    <section id="resume" className="py-24">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold font-syne mb-4 text-gray-900 dark:text-white">
+    <section id="resume" className="py-16 md:py-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <h2 className="text-3xl md:text-4xl md:text-5xl font-bold font-syne mb-3 md:mb-4 text-gray-900 dark:text-white">
           Resume & CV.
         </h2>
-        <p className="text-gray-600 dark:text-gray-400 text-lg mb-16 max-w-2xl leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg mb-10 md:mb-16 max-w-2xl leading-relaxed">
           Need a formal document? Grab a copy of my resume or full Curriculum Vitae
           detailing my academic background and professional experience.
         </p>
 
-        <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
           {/* One Page Resume - Dark with Glow */}
           <a
             href={resumeUrl}
