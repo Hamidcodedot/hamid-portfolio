@@ -4,21 +4,21 @@
 
 @layer base {
   :root {
-    --background: #f8fafc; /* very light blue-gray */
+    --background: #f8fafc;
     --foreground: #0f172a;
-    --background-blob-1: rgba(0, 229, 192, 0.4);
-    --background-blob-2: rgba(59, 130, 246, 0.4);
-    --glass-border: rgba(0, 0, 0, 0.05);
-    --glass-bg: rgba(255, 255, 255, 0.6);
+    --background-blob-1: rgba(20, 184, 166, 0.2);
+    --background-blob-2: rgba(99, 102, 241, 0.15);
+    --glass-border: rgba(0, 0, 0, 0.06);
+    --glass-bg: rgba(255, 255, 255, 0.85);
   }
   
   .dark {
-    --background: #050505;
-    --foreground: #ffffff;
+    --background: #09090b;
+    --foreground: #f8fafc;
     --background-blob-1: rgba(0, 229, 192, 0.15);
     --background-blob-2: rgba(30, 58, 138, 0.2);
     --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-bg: rgba(19, 19, 21, 0.8);
   }
   
   html {

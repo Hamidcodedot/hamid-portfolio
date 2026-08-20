@@ -5,14 +5,11 @@ import Projects from "@/components/sections/Projects";
 import Learning from "@/components/sections/Learning";
 import Connect from "@/components/sections/Connect";
 import Resume from "@/components/sections/Resume";
-import { getPortfolioData } from "@/lib/fetchData";
-import { Github, Linkedin, Twitter } from "lucide-react";
-import Link from "next/link";
+import Logo from "@/components/ui/Logo";
+import { portfolioData } from "@/lib/data";
 
-export const revalidate = 60; // Revalidate data every minute
-
-export default async function Home() {
-  const data = await getPortfolioData();
+export default function Home() {
+  const data = portfolioData;
 
   return (
     <main className="flex min-h-screen flex-col w-full">
@@ -25,11 +22,19 @@ export default async function Home() {
       <Connect />
       
       {/* Footer */}
-      <footer className="py-8 border-t border-black/5 dark:border-white/10 mt-12 bg-white/10 dark:bg-black/10 backdrop-blur-md relative z-10">
-        <div className="max-w-6xl mx-auto px-6 flex justify-center items-center">
-          <p className="text-gray-600 dark:text-gray-400 text-sm font-syne font-medium tracking-widest uppercase">
-            © {new Date().getFullYear()} Hamid
-          </p>
+      <footer className="py-10 border-t border-slate-200 dark:border-white/5 bg-white/80 dark:bg-[#0e0e10]/80 backdrop-blur-2xl relative z-10">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+          <div className="flex items-center space-x-3">
+            <Logo size={28} />
+            <p className="text-slate-600 dark:text-gray-400 text-xs font-mono">
+              © {new Date().getFullYear()} Hamid Shahid. All rights reserved.
+            </p>
+          </div>
+
+          <div className="flex items-center space-x-2 text-slate-500 dark:text-gray-500 text-xs font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-[#00e5c0] animate-pulse" />
+            <span>Neural Systems Operational</span>
+          </div>
         </div>
       </footer>
     </main>

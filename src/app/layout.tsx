@@ -18,8 +18,13 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Hamid | AI Builder & Developer',
-  description: 'Portfolio of an AI Engineer & Builder',
+  title: 'Hamid Shahid | AI Engineer & Systems Architect',
+  description: 'Portfolio of Hamid Shahid - AI Engineer building intelligent systems, distributed architectures, and machine learning pipelines.',
+  icons: {
+    icon: '/logo.svg',
+    shortcut: '/logo.svg',
+    apple: '/logo.svg',
+  },
 };
 
 export const viewport = {

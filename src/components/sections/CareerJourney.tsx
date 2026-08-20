@@ -1,62 +1,67 @@
 "use client";
 
-import { Users, BrainCircuit } from "lucide-react";
+import { Users, BrainCircuit, Briefcase, GraduationCap, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { CareerJourneyItem } from "@/lib/data";
 
-type Journey = {
-  id: string;
-  title: string;
-  company: string;
-  date: string;
-  description: string;
-  alignment: string;
-};
-
-export default function CareerJourney({ journeys }: { journeys: Journey[] }) {
-
+export default function CareerJourney({ journeys }: { journeys: CareerJourneyItem[] }) {
   return (
-    <section id="career" className="py-16 md:py-24 bg-transparent border-t border-black/5 dark:border-white/10">
+    <section id="career" className="py-20 md:py-32 relative z-10 border-t border-slate-200 dark:border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <h2 className="text-3xl md:text-5xl font-bold font-syne mb-10 md:mb-16 text-gray-900 dark:text-white">
-          Career Journey<span className="text-teal-500">.</span>
-        </h2>
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16">
+          <div>
+            <div className="flex items-center space-x-2 text-teal-600 dark:text-teal-400 font-mono text-xs uppercase tracking-widest mb-3">
+              <Briefcase size={14} />
+              <span>Experience & Trajectory</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-syne text-slate-900 dark:text-white tracking-tight">
+              Career Journey<span className="text-teal-500 dark:text-[#00e5c0]">.</span>
+            </h2>
+          </div>
+          <p className="text-slate-500 dark:text-gray-400 text-sm mt-3 md:mt-0 max-w-sm">
+            Proven track record of designing machine learning systems and scaling software products.
+          </p>
+        </div>
 
         {journeys && journeys.length > 0 ? (
-          <div className="max-h-[650px] overflow-y-auto pr-2 sm:pr-4 custom-scrollbar overflow-x-hidden pt-4 pb-12">
-            <div className="relative border-l-2 border-black/10 dark:border-gray-800 ml-[52px] sm:ml-[80px] md:ml-[120px] pl-5 sm:pl-8 md:pl-12 space-y-12 md:space-y-16">
-              {journeys.map((item, idx) => (
-                <motion.div 
-                  key={item.id} 
-                  className="relative"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                >
-                  {/* Timeline Icon */}
-                  <div className="absolute -left-[42px] sm:-left-[58px] md:-left-[74px] top-0 w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-white/60 dark:bg-black/60 backdrop-blur-md rounded-xl border text-teal-600 dark:text-[#00e5c0] flex justify-center items-center overflow-hidden" style={{ boxShadow: '0 0 15px rgba(0, 229, 192, 0.1)', borderColor: 'rgba(0, 229, 192, 0.3)' }}>
-                    {idx % 2 === 0 ? <Users size={16} className="sm:hidden" /> : <BrainCircuit size={16} className="sm:hidden" />}
-                    {idx % 2 === 0 ? <Users size={20} className="hidden sm:block" /> : <BrainCircuit size={20} className="hidden sm:block" />}
+          <div className="relative pl-6 sm:pl-10 md:pl-12 border-l-2 border-teal-500/40 space-y-10 md:space-y-12">
+            {journeys.map((item) => (
+              <div 
+                key={item.id} 
+                className="relative"
+              >
+                {/* Glowing Pulsing Timeline Node */}
+                <div className="absolute -left-[31px] sm:-left-[47px] md:-left-[55px] top-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white dark:bg-[#131315] border-2 border-teal-600 dark:border-[#00e5c0] flex items-center justify-center shadow-[0_0_15px_rgba(20,184,166,0.3)] dark:shadow-[0_0_15px_rgba(0,229,192,0.5)]">
+                  <div className="w-2 h-2 rounded-full bg-teal-600 dark:bg-[#00e5c0] animate-pulse" />
+                </div>
+
+                {/* Timeline Card */}
+                <div className="bg-white/80 dark:bg-[#131315]/80 backdrop-blur-2xl border border-slate-200/80 dark:border-white/10 p-6 sm:p-7 rounded-2xl hover:border-teal-500/40 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <span className="inline-block px-3 py-1 text-xs font-mono font-medium text-teal-700 dark:text-teal-400 bg-teal-500/10 border border-teal-500/20 rounded-full w-fit">
+                      {item.date}
+                    </span>
+                    <span className="text-slate-500 dark:text-gray-400 font-mono text-xs font-medium">
+                      {item.company}
+                    </span>
                   </div>
 
-                  <div className="flex flex-col md:flex-row md:items-start md:space-x-8">
-                    <div className="mb-2 md:mb-0 md:w-[200px] flex-shrink-0 md:pt-3">
-                      <p className="text-teal-600 dark:text-teal-500 font-medium uppercase text-xs sm:text-sm tracking-wider">{item.date}</p>
-                    </div>
-                    <div className="flex-grow bg-white/40 dark:bg-black/40 backdrop-blur-md border border-black/5 dark:border-white/10 p-4 sm:p-6 rounded-2xl hover:border-teal-500/30 transition-colors shadow-[0_4px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.2)]">
-                      <h3 className="font-bold text-gray-900 dark:text-white text-lg sm:text-xl md:text-2xl font-syne">{item.title}</h3>
-                      <h4 className="text-gray-600 dark:text-gray-400 font-medium text-base sm:text-lg mt-1 mb-3 md:mb-4">{item.company}</h4>
-                      <p className="text-sm sm:text-base leading-relaxed text-gray-700 dark:text-gray-400">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  <h3 className="font-bold text-slate-900 dark:text-white text-lg sm:text-xl font-syne mb-2">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-gray-300 font-light">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
-          <div className="flex flex-col items-start py-10 text-gray-500 font-syne">
-             [Career timeline data missing]
+          <div className="text-slate-400 dark:text-gray-500 font-mono text-sm py-8">
+            No career milestones loaded.
           </div>
         )}
       </div>

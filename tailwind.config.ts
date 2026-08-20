@@ -15,7 +15,7 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        teal: {
+        brand: {
           DEFAULT: "#00e5c0",
           hover: "#00c4a3",
         },

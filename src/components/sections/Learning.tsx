@@ -1,20 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, PlayCircle, ExternalLink } from "lucide-react";
+import { CheckCircle2, PlayCircle, ExternalLink, BookOpen, Sparkles } from "lucide-react";
 import clsx from "clsx";
 import { formatUrl } from "@/lib/utils";
 import { motion } from "framer-motion";
-
-type LearningItem = {
-  id: string;
-  title: string;
-  category: string;
-  status: "current" | "completed";
-  progress_percent: number;
-  resource_url?: string;
-  description?: string;
-};
+import { LearningItem } from "@/lib/data";
 
 export default function Learning({ data }: { data: { current: LearningItem[], completed: LearningItem[] } }) {
   const [activeTab, setActiveTab] = useState<"current" | "completed">("current");
@@ -23,100 +14,129 @@ export default function Learning({ data }: { data: { current: LearningItem[], co
   const completedItems = data?.completed || [];
 
   return (
-    <section id="learning" className="py-16 md:py-24 border-t border-black/5 dark:border-white/10 relative z-10">
+    <section id="learning" className="py-20 md:py-32 border-t border-slate-200 dark:border-white/5 relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <h2 className="text-3xl md:text-5xl font-bold font-syne mb-8 md:mb-12 text-gray-900 dark:text-white">
-          Knowledge Base<span className="text-teal-500">.</span>
-        </h2>
+        
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <div className="flex items-center space-x-2 text-teal-600 dark:text-teal-400 font-mono text-xs uppercase tracking-widest mb-3">
+              <BookOpen size={14} />
+              <span>Continuous Research</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-syne text-slate-900 dark:text-white tracking-tight">
+              Knowledge Base<span className="text-teal-500 dark:text-[#00e5c0]">.</span>
+            </h2>
+          </div>
+          <p className="text-slate-500 dark:text-gray-400 text-sm mt-3 md:mt-0 max-w-sm">
+            Tracking emerging AI architectures, systems research, and advanced engineering specializations.
+          </p>
+        </div>
 
-        <div className="flex flex-wrap border-b border-black/10 dark:border-white/10 mb-8 md:mb-10">
+        {/* Tab Switcher Pills */}
+        <div className="inline-flex p-1.5 rounded-2xl bg-slate-100/90 dark:bg-[#131315]/80 border border-slate-200 dark:border-white/10 backdrop-blur-xl mb-10 shadow-sm">
           <button
             onClick={() => setActiveTab("current")}
             className={clsx(
-              "px-6 py-4 text-sm font-medium transition-all relative",
-              activeTab === "current" ? "text-teal-600 dark:text-teal-400" : "text-gray-500 dark:hover:text-gray-300 hover:text-gray-800"
+              "px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all relative flex items-center space-x-2",
+              activeTab === "current" 
+                ? "text-white bg-teal-600 dark:text-black dark:bg-[#00e5c0] shadow-sm dark:shadow-[0_0_20px_rgba(0,229,192,0.3)]" 
+                : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
             )}
           >
-            Currently Learning
-            {activeTab === "current" && (
-              <motion.div layoutId="underline" className="absolute left-0 bottom-0 w-full h-[2px] bg-teal-500" />
-            )}
+            <PlayCircle size={16} />
+            <span>Currently Exploring ({currentItems.length})</span>
           </button>
           <button
             onClick={() => setActiveTab("completed")}
             className={clsx(
-              "px-6 py-4 text-sm font-medium transition-all relative",
-              activeTab === "completed" ? "text-gray-900 dark:text-white" : "text-gray-500 dark:hover:text-gray-300 hover:text-gray-800"
+              "px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all relative flex items-center space-x-2",
+              activeTab === "completed" 
+                ? "text-white bg-teal-600 dark:text-black dark:bg-[#00e5c0] shadow-sm dark:shadow-[0_0_20px_rgba(0,229,192,0.3)]" 
+                : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
             )}
           >
-            Completed
-            {activeTab === "completed" && (
-              <motion.div layoutId="underline" className="absolute left-0 bottom-0 w-full h-[2px] bg-gray-900 dark:bg-white" />
-            )}
+            <CheckCircle2 size={16} />
+            <span>Completed ({completedItems.length})</span>
           </button>
         </div>
 
-        <div className="min-h-[300px]">
+        {/* Tab Content */}
+        <div className="min-h-[250px]">
           {activeTab === "current" && (
-            <motion.div 
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-h-[450px] overflow-y-auto pr-2 sm:pr-4"
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {currentItems.map((item) => (
-                <div key={item.id} className="p-6 bg-white/40 dark:bg-black/40 backdrop-blur-md border border-black/5 dark:border-white/10 rounded-xl hover:border-teal-500/30 transition-colors shadow-[0_4px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.2)]">
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="flex items-center space-x-3">
-                      <PlayCircle className="text-teal-500" size={20} />
-                      <h3 className="font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+                <div 
+                  key={item.id} 
+                  className="p-6 sm:p-7 bg-white/80 dark:bg-[#131315]/80 backdrop-blur-2xl border border-slate-200/80 dark:border-white/10 rounded-2xl hover:border-teal-500/40 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)] flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex justify-between items-start mb-3">
+                      <span className="px-2.5 py-0.5 text-[10px] font-mono font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400 bg-teal-500/10 border border-teal-500/20 rounded-md">
+                        {item.category}
+                      </span>
+                      {item.resource_url && (
+                        <a href={formatUrl(item.resource_url)} target="_blank" rel="noreferrer" className="text-slate-400 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400">
+                          <ExternalLink size={16} />
+                        </a>
+                      )}
                     </div>
-                    {item.resource_url && (
-                      <a href={formatUrl(item.resource_url)} target="_blank" rel="noreferrer" className="text-gray-500 hover:text-teal-600 dark:hover:text-teal-400"><ExternalLink size={16} /></a>
+
+                    <h3 className="font-bold text-slate-900 dark:text-white text-lg font-syne mb-2">
+                      {item.title}
+                    </h3>
+                    {item.description && (
+                      <p className="text-slate-600 dark:text-gray-300 text-sm font-light leading-relaxed mb-6">
+                        {item.description}
+                      </p>
                     )}
                   </div>
-                  <span className="text-xs uppercase tracking-wider text-gray-600 dark:text-gray-500 block mb-4">{item.category}</span>
-                  {item.description && (
-                    <p className="text-gray-700 dark:text-gray-400 text-sm mb-5 font-light leading-relaxed">
-                      {item.description}
-                    </p>
-                  )}
                   
-                  <div className="w-full bg-black/10 dark:bg-white/10 rounded-full h-1.5 overflow-hidden backdrop-blur-sm">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${item.progress_percent}%` }}
-                      viewport={{ once: true }}
-                      className="bg-teal-500 h-1.5 rounded-full"
-                    />
-                  </div>
-                  <div className="text-right mt-2 text-xs text-gray-600 dark:text-gray-500 font-mono">
-                    {item.progress_percent}%
+                  {/* Progress Bar with Glowing Tip */}
+                  <div className="mt-4 pt-4 border-t border-slate-200 dark:border-white/5">
+                    <div className="flex justify-between text-xs font-mono text-slate-500 dark:text-gray-400 mb-2 font-medium">
+                      <span>Progress</span>
+                      <span className="text-teal-600 dark:text-teal-400 font-bold">{item.progress_percent}%</span>
+                    </div>
+                    <div className="w-full bg-slate-200 dark:bg-black/60 rounded-full h-2 overflow-hidden border border-slate-300/40 dark:border-white/5">
+                      <div 
+                        style={{ width: `${item.progress_percent}%` }}
+                        className="bg-gradient-to-r from-teal-500 to-[#00e5c0] h-2 rounded-full shadow-[0_0_10px_rgba(20,184,166,0.5)] dark:shadow-[0_0_10px_rgba(0,229,192,0.8)] transition-all duration-700"
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           )}
 
           {activeTab === "completed" && (
-            <motion.div 
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="grid gap-4 max-h-[450px] overflow-y-auto pr-4"
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {completedItems.map((item) => (
-                <div key={item.id} className="flex items-center p-4 bg-white/40 dark:bg-black/40 backdrop-blur-md border border-black/5 dark:border-white/10 rounded-lg hover:bg-white/60 dark:hover:bg-black/60 transition-colors shadow-sm">
-                  <CheckCircle2 className="text-green-500 mr-4 flex-shrink-0" size={20} />
+                <div 
+                  key={item.id} 
+                  className="flex items-start p-5 bg-white/80 dark:bg-[#131315]/80 backdrop-blur-2xl border border-slate-200/80 dark:border-white/10 rounded-xl hover:border-teal-500/40 transition-all shadow-sm"
+                >
+                  <div className="p-2 rounded-lg bg-teal-500/10 border border-teal-500/20 text-teal-600 dark:text-[#00e5c0] mr-4 flex-shrink-0 mt-0.5">
+                    <CheckCircle2 size={18} />
+                  </div>
                   <div className="flex-grow">
-                    <h3 className="text-gray-900 dark:text-white font-medium">{item.title}</h3>
-                    <span className="text-xs text-gray-600 dark:text-gray-500 block mb-1">{item.category}</span>
+                    <div className="flex items-center justify-between mb-1">
+                      <h3 className="text-slate-900 dark:text-white font-bold text-base font-syne">{item.title}</h3>
+                      <span className="text-[10px] font-mono text-teal-600 dark:text-teal-400 uppercase tracking-widest font-semibold">{item.category}</span>
+                    </div>
                     {item.description && (
-                      <p className="text-gray-700 dark:text-gray-400 text-sm font-light mt-1">{item.description}</p>
+                      <p className="text-slate-600 dark:text-gray-300 text-xs sm:text-sm font-light mt-1">{item.description}</p>
                     )}
                   </div>
                   {item.resource_url && (
-                    <a href={formatUrl(item.resource_url)} target="_blank" rel="noreferrer" className="text-gray-500 hover:text-gray-900 dark:hover:text-white px-3"><ExternalLink size={16} /></a>
+                    <a href={formatUrl(item.resource_url)} target="_blank" rel="noreferrer" className="text-slate-400 dark:text-gray-400 hover:text-teal-600 dark:hover:text-white ml-3">
+                      <ExternalLink size={16} />
+                    </a>
                   )}
                 </div>
               ))}
-            </motion.div>
+            </div>
           )}
         </div>
       </div>
