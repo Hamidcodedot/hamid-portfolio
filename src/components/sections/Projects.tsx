@@ -95,7 +95,7 @@ export default function Projects({ projects }: { projects: ProjectData[] }) {
 
               {/* Tech Stack Pills */}
               <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-200 dark:border-white/5">
-                {project.tech_stack?.map((tech) => (
+                {project.tech_stack?.map((tech: string) => (
                   <span 
                     key={tech} 
                     className="px-2.5 py-1 text-[11px] font-mono font-medium text-teal-700 dark:text-teal-300 bg-teal-500/10 border border-teal-500/20 rounded-md backdrop-blur-md"
