@@ -27,34 +27,34 @@ export default function WorkTree({ pillars }: WorkTreeProps) {
   };
 
   return (
-    <section id="work-tree" className="py-20 md:py-28 px-6 max-w-6xl mx-auto border-t border-espresso-border relative">
+    <section id="work-tree" className="py-14 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 max-w-6xl mx-auto border-t border-espresso-border relative">
       {/* Section Header */}
-      <ScrollReveal className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <ScrollReveal className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-3 sm:gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.24em] text-brass mb-2">
+          <div className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.24em] text-brass mb-2">
             <span className="w-1.5 h-1.5 bg-brass rounded-full" />
             <span>INTERACTIVE ARCHITECTURAL TOPOLOGY</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl text-ivory font-normal">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-ivory font-normal">
             Production Systems // Core Architecture
           </h2>
         </div>
-        <p className="font-sans text-sm text-ivory-muted max-w-md font-light leading-relaxed">
+        <p className="font-sans text-xs sm:text-sm text-ivory-muted max-w-md font-light leading-relaxed">
           Three high-reliability production systems engineered for low latency, zero-leak privacy, and verified scale. Select to inspect each architecture.
         </p>
       </ScrollReveal>
 
       {/* Visual Origin Root Node */}
-      <ScrollReveal className="flex flex-col items-center mb-10" delayMs={50}>
-        <div className="px-4 py-1.5 rounded-full border border-brass/40 bg-espresso-surface text-xs font-mono text-brass tracking-wider uppercase flex items-center gap-2 shadow-sm">
+      <ScrollReveal className="flex flex-col items-center mb-8 sm:mb-10" delayMs={50}>
+        <div className="px-3.5 sm:px-4 py-1.5 rounded-full border border-brass/40 bg-espresso-surface text-[11px] sm:text-xs font-mono text-brass tracking-wider uppercase flex items-center gap-2 shadow-sm">
           <GitBranch className="w-3.5 h-3.5" />
           <span>Root Origin // Production Codebases</span>
         </div>
-        <div className="w-[1px] h-8 bg-gradient-to-b from-brass/50 to-brass/20" />
+        <div className="w-[1px] h-6 sm:h-8 bg-gradient-to-b from-brass/50 to-brass/20" />
       </ScrollReveal>
 
       {/* 3-Pillar Interactive Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 relative">
         {pillars.map((pillar, idx) => {
           const isActive = activeBranch === pillar.id;
 
@@ -63,7 +63,7 @@ export default function WorkTree({ pillars }: WorkTreeProps) {
               <div
                 onClick={() => setActiveBranch(pillar.id)}
                 onMouseEnter={() => setActiveBranch(pillar.id)}
-                className={`p-6 sm:p-7 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between relative group h-full ${
+                className={`p-5 sm:p-7 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between relative group h-full active:scale-[0.99] ${
                   isActive
                     ? "bg-espresso-surface border-brass shadow-lg shadow-brass/5"
                     : "bg-espresso-surface/50 border-espresso-border hover:border-espresso-borderHover hover:bg-espresso-surface/80"
@@ -87,23 +87,23 @@ export default function WorkTree({ pillars }: WorkTreeProps) {
                     </div>
                   </div>
 
-                  <h3 className="font-serif text-xl sm:text-2xl text-ivory font-normal mb-3 group-hover:text-brass-light transition-colors">
+                  <h3 className="font-serif text-xl sm:text-2xl text-ivory font-normal mb-2 sm:mb-3 group-hover:text-brass-light transition-colors">
                     {pillar.systemName}
                   </h3>
 
-                  <p className="font-sans text-xs sm:text-sm text-ivory-muted leading-relaxed mb-6 font-light">
+                  <p className="font-sans text-xs sm:text-sm text-ivory-muted leading-relaxed mb-5 sm:mb-6 font-light">
                     {pillar.summary}
                   </p>
                 </div>
 
                 <div>
                   {/* Highlight Metric */}
-                  <div className="p-3 rounded-xl bg-espresso-deep/80 border border-espresso-border mb-5 flex items-center justify-between">
+                  <div className="p-3 rounded-xl bg-espresso-deep/80 border border-espresso-border mb-4 sm:mb-5 flex items-center justify-between">
                     <div>
-                      <div className="font-serif text-xl text-brass font-normal">
+                      <div className="font-serif text-lg sm:text-xl text-brass font-normal">
                         {pillar.metric}
                       </div>
-                      <div className="text-[10px] font-mono text-ivory-faint uppercase tracking-wider">
+                      <div className="text-[9.5px] sm:text-[10px] font-mono text-ivory-faint uppercase tracking-wider">
                         {pillar.metricLabel}
                       </div>
                     </div>
@@ -116,7 +116,7 @@ export default function WorkTree({ pillars }: WorkTreeProps) {
                   </div>
 
                   {/* Clean Minimalist Tech Stack Vector Logos */}
-                  <div className="flex flex-wrap items-center gap-2 mb-6">
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-5 sm:mb-6">
                     {pillar.techStack.map((tech) => (
                       <TechLogo key={tech} name={tech} size="sm" />
                     ))}
@@ -128,7 +128,8 @@ export default function WorkTree({ pillars }: WorkTreeProps) {
                       href={pillar.repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-mono text-ivory-muted hover:text-brass transition-colors min-h-[44px] py-2"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-ivory-muted hover:text-brass transition-colors min-h-[44px] py-2 px-1"
                     >
                       <span>GitHub</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -139,7 +140,8 @@ export default function WorkTree({ pillars }: WorkTreeProps) {
                         href={pillar.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brass/10 hover:bg-brass text-brass hover:text-espresso border border-brass/30 transition-all font-mono text-xs font-semibold min-h-[38px]"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-brass/10 hover:bg-brass text-brass hover:text-espresso border border-brass/30 transition-all font-mono text-xs font-semibold min-h-[44px] active:scale-95"
                       >
                         <span>Live System</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />

@@ -84,7 +84,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     <div className="flex min-h-screen flex-col w-full max-w-full overflow-x-hidden bg-espresso text-ivory relative canvas-grain">
       {/* Top Header */}
       <header className="sticky top-0 z-40 w-full bg-espresso/90 backdrop-blur-md border-b border-espresso-border transition-colors duration-200">
-        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link
             href="/articles"
             className="inline-flex items-center gap-2 group text-xs uppercase font-sans tracking-widest text-ivory-muted hover:text-brass transition-colors min-h-[44px]"
@@ -106,32 +106,32 @@ export default function ArticlePage({ params }: ArticlePageProps) {
       </header>
 
       {/* Main Article Container */}
-      <main className="flex-1 max-w-4xl mx-auto w-full px-6 py-14 sm:py-20">
+      <main className="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-20">
         {/* Article Header & Metadata */}
-        <header className="mb-12 border-b border-espresso-border pb-10">
+        <header className="mb-10 sm:mb-12 border-b border-espresso-border pb-8 sm:pb-10">
           {/* Category & Read Time */}
-          <div className="flex flex-wrap items-center gap-3 text-xs font-sans text-brass mb-6">
-            <span className="px-3 py-1 rounded-full bg-espresso-elevated border border-brass/30 text-brass text-[11px] font-semibold uppercase tracking-wider">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-sans text-brass mb-4 sm:mb-6">
+            <span className="px-2.5 sm:px-3 py-1 rounded-full bg-espresso-elevated border border-brass/30 text-brass text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-wider">
               {article.category}
             </span>
-            <span className="flex items-center gap-1 text-ivory-faint text-[11px]">
+            <span className="flex items-center gap-1 text-ivory-faint text-[10.5px] sm:text-[11px]">
               <Clock className="w-3 h-3 text-ivory-faint" />
               {article.readTime}
             </span>
             <span className="text-ivory-faint">•</span>
-            <span className="flex items-center gap-1 text-ivory-faint text-[11px]">
+            <span className="flex items-center gap-1 text-ivory-faint text-[10.5px] sm:text-[11px]">
               <Calendar className="w-3 h-3 text-ivory-faint" />
               {article.publishedAt}
             </span>
           </div>
 
           {/* Article Title */}
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-normal text-ivory leading-[1.18] tracking-tight mb-6">
+          <h1 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-normal text-ivory leading-[1.2] sm:leading-[1.18] tracking-tight mb-4 sm:mb-6">
             {article.title}
           </h1>
 
           {/* Subtitle / Thesis */}
-          <p className="font-sans text-lg sm:text-xl text-ivory-muted leading-relaxed mb-8 font-normal">
+          <p className="font-sans text-base sm:text-lg md:text-xl text-ivory-muted leading-relaxed mb-6 sm:mb-8 font-normal">
             {article.subtitle}
           </p>
 

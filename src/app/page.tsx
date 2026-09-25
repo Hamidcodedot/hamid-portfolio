@@ -8,6 +8,7 @@ import ActivityTapestry from "@/components/monograph/ActivityTapestry";
 import Journey from "@/components/monograph/Journey";
 import Contact from "@/components/monograph/Contact";
 import Footer from "@/components/monograph/Footer";
+import MobileQuickDock from "@/components/monograph/MobileQuickDock";
 import { portfolioData } from "@/lib/data";
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
       <Journey education={data.education} />
       <Contact />
       <Footer />
+      <MobileQuickDock />
     </main>
   );
 }

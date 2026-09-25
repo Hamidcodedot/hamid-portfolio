@@ -34,7 +34,7 @@ export default function ArticlesPage() {
     <div className="flex min-h-screen flex-col w-full max-w-full overflow-x-hidden bg-espresso text-ivory relative canvas-grain">
       {/* Top Navigation */}
       <header className="sticky top-0 z-40 w-full bg-espresso/90 backdrop-blur-md border-b border-espresso-border transition-colors duration-200">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link
             href="/"
             className="inline-flex items-center gap-2 group text-xs uppercase font-sans tracking-widest text-ivory-muted hover:text-brass transition-colors min-h-[44px]"
@@ -56,35 +56,35 @@ export default function ArticlesPage() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 max-w-5xl mx-auto w-full px-6 py-16 sm:py-24">
+      <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-24">
         {/* Editorial Header */}
-        <div className="mb-14 text-center max-w-3xl mx-auto">
+        <div className="mb-10 sm:mb-14 text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-widest text-brass mb-3">
             <BookOpen className="w-3.5 h-3.5" />
             <span>Research &amp; Field Notes</span>
           </div>
 
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal text-ivory tracking-tight mb-6 leading-[1.15]">
+          <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-normal text-ivory tracking-tight mb-4 sm:mb-6 leading-[1.18]">
             The Chronicle &amp;{" "}
             <span className="italic text-brass-light">Technical Writings.</span>
           </h1>
 
-          <p className="font-sans text-base sm:text-lg text-ivory-muted leading-relaxed font-normal">
+          <p className="font-sans text-sm sm:text-base md:text-lg text-ivory-muted leading-relaxed font-normal">
             Deep-dive explorations into AI systems architecture, edge privacy, deterministic state machines, and the discipline of durable software engineering.
           </p>
         </div>
 
         {/* Filter & Search Bar */}
-        <div className="mb-12 flex flex-col md:flex-row items-center justify-between gap-6 border-b border-espresso-border/60 pb-8">
-          {/* Category Tabs */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 w-full md:w-auto">
+        <div className="mb-10 sm:mb-12 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 border-b border-espresso-border/60 pb-6 sm:pb-8">
+          {/* Category Tabs with horizontal scroll on mobile */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap w-full md:w-auto touch-pan-x scrollbar-none">
             {categories.map((cat) => {
               const isActive = selectedCategory === cat;
               return (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`min-h-[44px] px-4 py-2 rounded-full text-xs font-sans tracking-wide transition-all ${
+                  className={`min-h-[40px] px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-sans tracking-wide transition-all whitespace-nowrap flex-shrink-0 ${
                     isActive
                       ? "bg-brass text-espresso font-semibold shadow-sm"
                       : "bg-espresso-surface/60 border border-espresso-border text-ivory-muted hover:text-ivory hover:border-espresso-borderHover"
@@ -96,7 +96,7 @@ export default function ArticlesPage() {
             })}
           </div>
 
-          {/* Search Box */}
+          {/* Search Box with 16px font-size on mobile to prevent iOS zoom */}
           <div className="relative w-full md:w-72">
             <Search className="w-4 h-4 text-ivory-faint absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
@@ -104,20 +104,23 @@ export default function ArticlesPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search articles & tags..."
-              className="w-full min-h-[44px] pl-10 pr-4 py-2 rounded-full bg-espresso-surface border border-espresso-border text-xs text-ivory placeholder:text-ivory-faint/60 focus:border-brass focus:outline-none focus:ring-1 focus:ring-brass transition-all"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              className="w-full min-h-[44px] pl-10 pr-4 py-2 rounded-full bg-espresso-surface border border-espresso-border text-base sm:text-xs text-ivory placeholder:text-ivory-faint/60 focus:border-brass focus:outline-none focus:ring-1 focus:ring-brass transition-all"
             />
           </div>
         </div>
 
         {/* Article Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {filteredArticles.map((article, idx) => (
             <motion.article
               key={article.slug}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="p-6 sm:p-8 rounded-lg border border-espresso-border bg-espresso-surface/60 hover:bg-espresso-surface hover:border-espresso-borderHover transition-all duration-300 flex flex-col justify-between group"
+              className="p-5 sm:p-8 rounded-xl border border-espresso-border bg-espresso-surface/60 hover:bg-espresso-surface hover:border-espresso-borderHover transition-all duration-300 flex flex-col justify-between group active:scale-[0.99]"
             >
               <div>
                 {/* Metadata */}

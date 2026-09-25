@@ -23,10 +23,10 @@ export default function OdysseyVesselRotator({
     <div
       onClick={() => setCurrentIndex((prev) => (prev + 1) % specializations.length)}
       title="Click to cycle engineering discipline"
-      className="group relative cursor-pointer select-none inline-flex flex-col items-center justify-center my-3 max-w-full px-2"
+      className="group relative cursor-pointer select-none inline-flex flex-col items-center justify-center my-3 max-w-full px-2 active:scale-[0.98] transition-transform"
     >
       {/* Floating Vessel & Text Stage */}
-      <div className="relative flex items-center justify-center gap-3.5 sm:gap-5 pb-2">
+      <div className="relative flex items-center justify-center gap-2.5 sm:gap-4 pb-1.5 sm:pb-2">
         {/* Stable Anchored Odyssey Vessel */}
         <div className="relative flex-shrink-0 flex items-center justify-center">
           {/* Calm, Stable Nautical Buoyancy */}
@@ -43,12 +43,10 @@ export default function OdysseyVesselRotator({
             className="relative"
           >
             <svg
-              width="44"
-              height="36"
               viewBox="0 0 48 38"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="text-brass transition-transform duration-300 group-hover:scale-105"
+              className="w-8 h-7 sm:w-11 sm:h-9 text-brass transition-transform duration-300 group-hover:scale-105"
             >
               {/* Keel & Hull of Homeric Galley / Odyssey Vessel */}
               <path
@@ -142,7 +140,7 @@ export default function OdysseyVesselRotator({
         </div>
 
         {/* Dynamic Specialization Text Floating Upon the Water */}
-        <div className="relative min-w-[220px] sm:min-w-[290px] md:min-w-[360px] text-left">
+        <div className="relative min-w-[190px] xs:min-w-[230px] sm:min-w-[290px] md:min-w-[360px] text-left">
           {/* Subtle Water Reflection Shimmer beneath text */}
           <div className="absolute -bottom-2 left-0 right-0 h-4 bg-gradient-to-r from-brass/0 via-brass/15 to-brass/0 blur-sm pointer-events-none" />
 
@@ -170,7 +168,7 @@ export default function OdysseyVesselRotator({
                 }}
                 className="flex items-center"
               >
-                <span className="italic text-brass font-serif font-normal text-xl sm:text-2xl md:text-3xl tracking-wide whitespace-nowrap drop-shadow-[0_2px_8px_rgba(200,169,126,0.15)]">
+                <span className="italic text-brass font-serif font-normal text-base xs:text-lg sm:text-2xl md:text-3xl tracking-wide whitespace-nowrap drop-shadow-[0_2px_8px_rgba(200,169,126,0.15)]">
                   {specializations[currentIndex]}
                 </span>
               </motion.div>
@@ -180,7 +178,7 @@ export default function OdysseyVesselRotator({
       </div>
 
       {/* Unified Animated Flowing Water Waves spanning across beneath both Boat & Text */}
-      <div className="w-full max-w-[320px] sm:max-w-[420px] md:max-w-[480px] h-4 relative overflow-hidden flex items-center justify-center -mt-1">
+      <div className="w-full max-w-[270px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[480px] h-3.5 sm:h-4 relative overflow-hidden flex items-center justify-center -mt-1">
         <svg
           viewBox="0 0 500 24"
           fill="none"

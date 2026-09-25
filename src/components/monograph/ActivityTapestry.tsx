@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
-import { GitCommit, GitPullRequest, GitFork, ArrowUpRight, Code2 } from "lucide-react";
+import { useMemo, useState, useEffect, useRef } from "react";
+import { GitCommit, GitPullRequest, GitFork, ArrowUpRight, Code2, ArrowRight } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import { GithubData, GithubLanguage } from "@/lib/data";
+import fallbackCalendar from "@/lib/github-contributions.json";
 
 interface ActivityTapestryProps {
   github: GithubData;
@@ -19,10 +20,13 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
   const [liveData, setLiveData] = useState<{
     totalContributions: number;
     publicRepos: number;
-    cadencePercentage: string;
+    activeDays?: number;
+    longestStreak?: string;
+    cadencePercentage?: string;
     contributions: ContributionDay[];
   } | null>(null);
   const [isLive, setIsLive] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Fetch real-time live GitHub telemetry
   useEffect(() => {
@@ -48,31 +52,29 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
     };
   }, []);
 
-  // Compute fallback days if live data is fetching or offline
+  // Verified authentic contributions snapshot from Hamid's GitHub
   const fallbackDays = useMemo(() => {
-    const totalDays = 52 * 7;
-    const days: ContributionDay[] = [];
-    const today = new Date();
-
-    for (let i = totalDays - 1; i >= 0; i--) {
-      const d = new Date(today);
-      d.setDate(d.getDate() - i);
-      days.push({
-        date: d.toISOString().split("T")[0],
-        count: i % 3 === 0 ? 3 : 0,
-        level: i % 3 === 0 ? 2 : 0,
-      });
+    if (Array.isArray(fallbackCalendar?.contributions) && fallbackCalendar.contributions.length > 0) {
+      return fallbackCalendar.contributions as ContributionDay[];
     }
-    return days;
+    return [];
   }, []);
 
   const displayDays = (liveData && liveData.contributions.length > 0)
     ? liveData.contributions
     : fallbackDays;
 
-  const totalContributions = liveData?.totalContributions ?? github.totalContributions;
+  // Auto-scroll to latest commits on mobile so user sees recent activity immediately
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = scrollContainerRef.current.scrollWidth;
+    }
+  }, [displayDays]);
+
+  const verifiedTotal = fallbackCalendar.total?.lastYear ?? 425;
+  const totalContributions = liveData?.totalContributions ?? verifiedTotal;
   const publicRepos = liveData?.publicRepos ? `${liveData.publicRepos} Projects` : "9 Projects";
-  const cadence = liveData?.cadencePercentage ?? "98.4%";
+  const streak = liveData?.longestStreak ?? liveData?.cadencePercentage ?? "27-Day Streak";
 
   const getCellColor = (level: number) => {
     switch (level) {
@@ -93,13 +95,13 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
     {
       label: "Annual Commits Recorded",
       value: `${totalContributions}+`,
-      subtext: "Live GitHub Telemetry",
+      subtext: "Verified GitHub Telemetry",
       icon: <GitCommit className="w-4 h-4 text-brass" />,
     },
     {
-      label: "Consecutive Cadence",
-      value: cadence,
-      subtext: "Engineering Consistency",
+      label: "Peak Commit Cadence",
+      value: streak,
+      subtext: "78 Active Coding Days",
       icon: <GitPullRequest className="w-4 h-4 text-brass" />,
     },
     {
@@ -111,45 +113,45 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
   ];
 
   return (
-    <section id="activity" className="py-20 md:py-28 px-6 max-w-6xl mx-auto border-t border-espresso-border w-full max-w-full min-w-0 overflow-hidden">
+    <section id="activity" className="py-14 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 max-w-6xl mx-auto border-t border-espresso-border w-full max-w-full min-w-0 overflow-hidden">
       {/* Section Header */}
-      <ScrollReveal className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      <ScrollReveal className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-3 sm:gap-4">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-brass">
+            <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-brass">
               CHAPTER V // VERIFIABLE CODE CADENCE
             </span>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-[10px] font-mono text-emerald-300">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-[9.5px] sm:text-[10px] font-mono text-emerald-300">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>{isLive ? "LIVE GITHUB SYNC" : "GITHUB TELEMETRY"}</span>
             </div>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl text-ivory font-normal">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-ivory font-normal">
             GitHub Activity Tapestry
           </h2>
         </div>
-        <p className="font-sans text-sm text-ivory-muted max-w-md font-light leading-relaxed">
+        <p className="font-sans text-xs sm:text-sm text-ivory-muted max-w-md font-light leading-relaxed">
           A continuous, live record of production commits, architectural refinements, and open-source contributions pulled directly from GitHub.
         </p>
       </ScrollReveal>
 
       {/* 3-Card Balanced Statistics Banner */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
         {statMetrics.map((stat, idx) => (
           <ScrollReveal key={stat.label} delayMs={idx * 60}>
-            <div className="p-5 rounded-2xl border border-espresso-border bg-espresso-surface/60 flex items-center justify-between h-full hover:border-brass/30 transition-colors">
+            <div className="p-4 sm:p-5 rounded-2xl border border-espresso-border bg-espresso-surface/60 flex items-center justify-between h-full hover:border-brass/30 transition-colors">
               <div>
-                <div className="text-[11px] font-mono text-ivory-faint uppercase tracking-wider mb-1">
+                <div className="text-[10px] sm:text-[11px] font-mono text-ivory-faint uppercase tracking-wider mb-1">
                   {stat.label}
                 </div>
-                <div className="font-serif text-2xl sm:text-3xl text-brass font-normal">
+                <div className="font-serif text-xl sm:text-2xl md:text-3xl text-brass font-normal">
                   {stat.value}
                 </div>
-                <div className="text-[11px] font-sans text-ivory-muted mt-0.5">
+                <div className="text-[10.5px] sm:text-[11px] font-sans text-ivory-muted mt-0.5">
                   {stat.subtext}
                 </div>
               </div>
-              <div className="p-2.5 rounded-full bg-espresso-deep border border-espresso-border flex-shrink-0">
+              <div className="p-2 sm:p-2.5 rounded-full bg-espresso-deep border border-espresso-border flex-shrink-0">
                 {stat.icon}
               </div>
             </div>
@@ -159,15 +161,15 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
 
       {/* The Woven Tapestry Grid Container */}
       <ScrollReveal delayMs={100}>
-        <div className="p-5 sm:p-7 rounded-2xl border border-espresso-border bg-espresso-surface/70 mb-8 w-full max-w-full min-w-0 overflow-hidden shadow-sm hover:border-brass/30 transition-colors">
-          <div className="flex flex-wrap items-center justify-between mb-5 gap-2 text-xs font-sans text-ivory-faint">
+        <div className="p-4 sm:p-7 rounded-2xl border border-espresso-border bg-espresso-surface/70 mb-6 sm:mb-8 w-full max-w-full min-w-0 overflow-hidden shadow-sm hover:border-brass/30 transition-colors">
+          <div className="flex flex-wrap items-center justify-between mb-4 sm:mb-5 gap-2 text-xs font-sans text-ivory-faint">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-brass animate-pulse" />
-              <span className="font-mono text-xs uppercase tracking-wider text-ivory font-medium">
+              <span className="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-ivory font-medium">
                 Annual Contribution Tapestry (Live)
               </span>
             </div>
-            <div className="flex items-center gap-1.5 font-mono text-[11px]">
+            <div className="flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px]">
               <span>Less</span>
               <span className="w-2.5 h-2.5 rounded-[1px] bg-espresso-elevated" />
               <span className="w-2.5 h-2.5 rounded-[1px] bg-brass/25" />
@@ -178,8 +180,11 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
             </div>
           </div>
 
-          {/* Scrollable grid container with smooth touch pan */}
-          <div className="w-full max-w-full overflow-x-auto pb-4 pt-1 -mx-1 px-1 touch-pan-x scrollbar-thin scrollbar-thumb-espresso-border">
+          {/* Scrollable grid container with smooth touch pan and auto-scroll ref */}
+          <div
+            ref={scrollContainerRef}
+            className="w-full max-w-full overflow-x-auto pb-3 pt-1 -mx-1 px-1 touch-pan-x scrollbar-thin scrollbar-thumb-espresso-border"
+          >
             <div className="grid grid-flow-col grid-rows-7 gap-[3.5px] w-max mx-auto md:mx-0">
               {displayDays.map((day) => (
                 <div
@@ -191,11 +196,14 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-3 pt-4 mt-2 border-t border-espresso-border/50 text-xs font-sans text-ivory-faint">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-2.5 pt-3 sm:pt-4 mt-2 border-t border-espresso-border/50 text-xs font-sans text-ivory-faint">
+            <div className="flex items-center gap-1.5">
               <Code2 className="w-3.5 h-3.5 text-brass" />
               <span className="hidden sm:inline font-mono text-xs">Production Commits // Live Auto-Sync Active</span>
-              <span className="sm:hidden text-[11px] text-brass font-mono">Swipe grid horizontally to inspect all weeks →</span>
+              <span className="sm:hidden text-[10.5px] text-brass font-mono flex items-center gap-1">
+                <span>Recent commits right</span>
+                <ArrowRight className="w-3 h-3 inline" />
+              </span>
             </div>
             <a
               href={`https://github.com/${github.username}`}
@@ -212,16 +220,16 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
 
       {/* Languages Spectrum Bar */}
       <ScrollReveal delayMs={150}>
-        <div className="p-6 sm:p-7 rounded-2xl border border-espresso-border bg-espresso-surface/40 hover:border-brass/30 transition-colors">
+        <div className="p-5 sm:p-7 rounded-2xl border border-espresso-border bg-espresso-surface/40 hover:border-brass/30 transition-colors">
           <div className="flex items-center justify-between mb-3 text-xs font-sans">
-            <span className="font-mono text-xs uppercase tracking-widest text-ivory-faint">
+            <span className="font-mono text-[11px] sm:text-xs uppercase tracking-widest text-ivory-faint">
               Core Production Languages Breakdown
             </span>
-            <span className="text-brass font-mono text-xs">100% Type-Safe Focus</span>
+            <span className="text-brass font-mono text-[11px] sm:text-xs">100% Type-Safe Focus</span>
           </div>
 
           {/* Multi-segment bar */}
-          <div className="w-full h-3 rounded-full overflow-hidden flex bg-espresso-elevated mb-5 p-[1px]">
+          <div className="w-full h-2.5 sm:h-3 rounded-full overflow-hidden flex bg-espresso-elevated mb-4 sm:mb-5 p-[1px]">
             {github.languages.map((lang: GithubLanguage) => (
               <div
                 key={lang.name}
@@ -233,15 +241,15 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
           </div>
 
           {/* Legend */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-sans">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 text-xs font-sans">
             {github.languages.map((lang: GithubLanguage) => (
-              <div key={lang.name} className="flex items-center gap-2 p-2.5 rounded-full bg-espresso-deep/40 border border-espresso-border/50">
+              <div key={lang.name} className="flex items-center gap-2 p-2 sm:p-2.5 rounded-full bg-espresso-deep/40 border border-espresso-border/50">
                 <span
-                  className="w-2.5 h-2.5 rounded-full"
+                  className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                   style={{ backgroundColor: lang.color }}
                 />
-                <span className="text-ivory-muted font-normal text-xs">{lang.name}</span>
-                <span className="text-brass ml-auto font-mono text-xs">{lang.percent}%</span>
+                <span className="text-ivory-muted font-normal text-[11px] sm:text-xs truncate">{lang.name}</span>
+                <span className="text-brass ml-auto font-mono text-[11px] sm:text-xs">{lang.percent}%</span>
               </div>
             ))}
           </div>

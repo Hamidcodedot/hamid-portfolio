@@ -158,7 +158,7 @@ export const portfolioData: PortfolioData = {
     stats: [
       { label: "University CGPA", value: "3.38 / 4.0" },
       { label: "Public Repos", value: "9" },
-      { label: "2026 Contributions", value: "419" },
+      { label: "2026 Contributions", value: "425" },
     ],
   },
   workTree: [
@@ -453,7 +453,7 @@ export const portfolioData: PortfolioData = {
   },
   github: {
     username: "Hamidcodedot",
-    totalContributions: "419",
+    totalContributions: "425",
     languages: [
       { name: "TypeScript", percent: 50, color: "#C8A97E" },
       { name: "Python", percent: 25, color: "#D4CEC3" },

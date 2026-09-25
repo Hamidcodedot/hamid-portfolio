@@ -36,10 +36,17 @@
     background: #2a2825;
     border-radius: 2px;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #C8A97E;
+  /* Prevent mobile tap highlight gray box */
+  * {
+    -webkit-tap-highlight-color: transparent;
   }
 }
+
+/* Mobile viewport and safe-area helpers */
+.pb-safe {
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+}
+
 
 /* Subtle archival canvas grain */
 .canvas-grain {
