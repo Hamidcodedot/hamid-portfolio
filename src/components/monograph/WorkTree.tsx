@@ -61,9 +61,19 @@ export default function WorkTree({ pillars }: WorkTreeProps) {
           return (
             <ScrollReveal key={pillar.id} delayMs={idx * 80}>
               <div
+                role="button"
+                tabIndex={0}
+                aria-pressed={isActive}
+                aria-label={`Select ${pillar.systemName} architecture`}
                 onClick={() => setActiveBranch(pillar.id)}
                 onMouseEnter={() => setActiveBranch(pillar.id)}
-                className={`p-5 sm:p-7 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between relative group h-full active:scale-[0.99] ${
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActiveBranch(pillar.id);
+                  }
+                }}
+                className={`p-5 sm:p-7 rounded-2xl border transition-[border-color,background-color,box-shadow,transform] duration-200 ease-out-expo cursor-pointer flex flex-col justify-between relative group h-full active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso ${
                   isActive
                     ? "bg-espresso-surface border-brass shadow-lg shadow-brass/5"
                     : "bg-espresso-surface/50 border-espresso-border hover:border-espresso-borderHover hover:bg-espresso-surface/80"
@@ -71,7 +81,7 @@ export default function WorkTree({ pillars }: WorkTreeProps) {
               >
                 {/* Active Branch Indicator Dot */}
                 <div
-                  className={`absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-espresso transition-all duration-300 ${
+                  className={`absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-espresso transition-[background-color,transform] duration-200 ease-out-expo ${
                     isActive ? "bg-brass scale-110" : "bg-espresso-elevated"
                   }`}
                 />
@@ -129,7 +139,7 @@ export default function WorkTree({ pillars }: WorkTreeProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono text-ivory-muted hover:text-brass transition-colors min-h-[44px] py-2 px-1"
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-ivory-muted hover:text-brass transition-colors min-h-[44px] py-2 px-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass active:scale-[0.97]"
                     >
                       <span>GitHub</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -141,7 +151,7 @@ export default function WorkTree({ pillars }: WorkTreeProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-brass/10 hover:bg-brass text-brass hover:text-espresso border border-brass/30 transition-all font-mono text-xs font-semibold min-h-[44px] active:scale-95"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-brass/10 hover:bg-brass text-brass hover:text-espresso border border-brass/30 transition-[background-color,color,transform] duration-150 ease-out-expo font-mono text-xs font-semibold min-h-[44px] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
                       >
                         <span>Live System</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />

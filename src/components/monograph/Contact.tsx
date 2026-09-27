@@ -110,7 +110,7 @@ export default function Contact() {
                 href="https://meet.google.com/new"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-5 rounded-full bg-brass text-espresso hover:bg-brass-light font-sans text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200 min-h-[46px] shadow-sm shadow-brass/10 active:scale-[0.98]"
+                className="w-full py-3 px-5 rounded-full bg-brass text-espresso hover:bg-brass-light font-sans text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-[transform,background-color,color] duration-150 ease-out-expo min-h-[46px] shadow-sm shadow-brass/10 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
               >
                 <Video className="w-3.5 h-3.5" />
                 <span>Schedule on Google Meet</span>
@@ -126,7 +126,7 @@ export default function Contact() {
                 </span>
                 <a
                   href="mailto:iamhamid940@gmail.com"
-                  className="font-mono text-xs sm:text-sm text-ivory hover:text-brass transition-colors truncate block"
+                  className="font-mono text-xs sm:text-sm text-ivory hover:text-brass transition-colors truncate block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass rounded"
                 >
                   iamhamid940@gmail.com
                 </a>
@@ -134,7 +134,7 @@ export default function Contact() {
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className="p-2.5 rounded-lg bg-espresso-deep border border-espresso-border text-ivory-muted hover:text-brass hover:border-brass/40 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center flex-shrink-0"
+                className="p-2.5 rounded-lg bg-espresso-deep border border-espresso-border text-ivory-muted hover:text-brass hover:border-brass/40 transition-[border-color,color,transform] duration-150 ease-out-expo min-h-[44px] min-w-[44px] flex items-center justify-center flex-shrink-0 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
                 aria-label="Copy email address"
               >
                 {copiedEmail ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
@@ -147,7 +147,7 @@ export default function Contact() {
                 href="https://github.com/Hamidcodedot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 sm:p-3 rounded-lg border border-espresso-border bg-espresso-surface/60 hover:border-brass/40 transition-colors flex flex-col items-center justify-center gap-1.5 text-center min-h-[44px] group"
+                className="p-2.5 sm:p-3 rounded-lg border border-espresso-border bg-espresso-surface/60 hover:border-brass/40 transition-[border-color,background-color,transform] duration-150 ease-out-expo flex flex-col items-center justify-center gap-1.5 text-center min-h-[44px] group active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
               >
                 <Github className="w-4 h-4 text-brass" />
                 <span className="text-[10.5px] sm:text-[11px] font-mono text-ivory-muted group-hover:text-ivory">GitHub</span>
@@ -156,7 +156,7 @@ export default function Contact() {
                 href="https://www.linkedin.com/in/hamid-shahid-2b0448330"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 sm:p-3 rounded-lg border border-espresso-border bg-espresso-surface/60 hover:border-brass/40 transition-colors flex flex-col items-center justify-center gap-1.5 text-center min-h-[44px] group"
+                className="p-2.5 sm:p-3 rounded-lg border border-espresso-border bg-espresso-surface/60 hover:border-brass/40 transition-[border-color,background-color,transform] duration-150 ease-out-expo flex flex-col items-center justify-center gap-1.5 text-center min-h-[44px] group active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
               >
                 <Linkedin className="w-4 h-4 text-brass" />
                 <span className="text-[10.5px] sm:text-[11px] font-mono text-ivory-muted group-hover:text-ivory">LinkedIn</span>
@@ -165,7 +165,7 @@ export default function Contact() {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 sm:p-3 rounded-lg border border-espresso-border bg-espresso-surface/60 hover:border-brass/40 transition-colors flex flex-col items-center justify-center gap-1.5 text-center min-h-[44px] group"
+                className="p-2.5 sm:p-3 rounded-lg border border-espresso-border bg-espresso-surface/60 hover:border-brass/40 transition-[border-color,background-color,transform] duration-150 ease-out-expo flex flex-col items-center justify-center gap-1.5 text-center min-h-[44px] group active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
               >
                 <FileText className="w-4 h-4 text-brass" />
                 <span className="text-[10.5px] sm:text-[11px] font-mono text-ivory-muted group-hover:text-ivory">Resume PDF</span>
@@ -199,7 +199,7 @@ export default function Contact() {
                   value={formState.name}
                   onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                   placeholder="e.g. Dr. Eleanor Vance"
-                  className="w-full bg-espresso-deep border border-espresso-border px-3.5 sm:px-4 py-2.5 rounded-lg text-ivory placeholder:text-ivory-faint/40 font-sans text-base sm:text-sm focus:border-brass focus:outline-none focus:ring-1 focus:ring-brass transition-colors min-h-[46px]"
+                  className="w-full bg-espresso-deep border border-espresso-border px-3.5 sm:px-4 py-2.5 rounded-lg text-ivory placeholder:text-ivory-faint/40 font-sans text-base sm:text-sm focus:outline-none focus-visible:border-brass focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso transition-[border-color,box-shadow] duration-150 ease-out-expo min-h-[46px]"
                 />
               </div>
 
@@ -217,7 +217,7 @@ export default function Contact() {
                   value={formState.email}
                   onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                   placeholder="correspondent@institution.edu"
-                  className="w-full bg-espresso-deep border border-espresso-border px-3.5 sm:px-4 py-2.5 rounded-lg text-ivory placeholder:text-ivory-faint/40 font-sans text-base sm:text-sm focus:border-brass focus:outline-none focus:ring-1 focus:ring-brass transition-colors min-h-[46px]"
+                  className="w-full bg-espresso-deep border border-espresso-border px-3.5 sm:px-4 py-2.5 rounded-lg text-ivory placeholder:text-ivory-faint/40 font-sans text-base sm:text-sm focus:outline-none focus-visible:border-brass focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso transition-[border-color,box-shadow] duration-150 ease-out-expo min-h-[46px]"
                 />
               </div>
 
@@ -228,7 +228,7 @@ export default function Contact() {
                 <select
                   value={formState.scope}
                   onChange={(e) => setFormState({ ...formState, scope: e.target.value })}
-                  className="w-full bg-espresso-deep border border-espresso-border px-3.5 sm:px-4 py-2.5 rounded-lg text-ivory font-sans text-base sm:text-sm focus:border-brass focus:outline-none focus:ring-1 focus:ring-brass transition-colors min-h-[46px]"
+                  className="w-full bg-espresso-deep border border-espresso-border px-3.5 sm:px-4 py-2.5 rounded-lg text-ivory font-sans text-base sm:text-sm focus:outline-none focus-visible:border-brass focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso transition-[border-color,box-shadow] duration-150 ease-out-expo min-h-[46px]"
                 >
                   <option value="systems">Architectural &amp; Systems Advisory</option>
                   <option value="ai">AI Pipeline Engineering</option>
@@ -247,14 +247,14 @@ export default function Contact() {
                   value={formState.message}
                   onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                   placeholder="Outline the computational endeavor, latency constraint, or collaborative intent..."
-                  className="w-full bg-espresso-deep border border-espresso-border px-3.5 sm:px-4 py-2.5 rounded-lg text-ivory placeholder:text-ivory-faint/40 font-sans text-base sm:text-sm focus:border-brass focus:outline-none focus:ring-1 focus:ring-brass transition-colors min-h-[110px] resize-none"
+                  className="w-full bg-espresso-deep border border-espresso-border px-3.5 sm:px-4 py-2.5 rounded-lg text-ivory placeholder:text-ivory-faint/40 font-sans text-base sm:text-sm focus:outline-none focus-visible:border-brass focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso transition-[border-color,box-shadow] duration-150 ease-out-expo min-h-[110px] resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3.5 rounded-lg bg-brass text-espresso font-sans text-xs sm:text-sm font-semibold hover:bg-brass-light transition-all flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-50 min-h-[48px] shadow-sm shadow-brass/10"
+                className="w-full py-3.5 rounded-lg bg-brass text-espresso font-sans text-xs sm:text-sm font-semibold hover:bg-brass-light transition-[transform,background-color,color] duration-150 ease-out-expo flex items-center justify-center gap-2 active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none min-h-[48px] shadow-sm shadow-brass/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
               >
                 <span>{isSubmitting ? "Dispatching Message..." : "Send Message"}</span>
                 <Send className="w-3.5 h-3.5" />

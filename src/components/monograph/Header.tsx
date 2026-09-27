@@ -4,9 +4,13 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import AudioPlayer from "./AudioPlayer";
 import { Menu, X, ArrowUpRight, Compass, Layers, GitBranch, BookOpen, GraduationCap, Mail } from "lucide-react";
+import { useScrollState } from "@/hooks/useScrollDirection";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { direction, isAtTop, scrollY } = useScrollState();
+
+  const isHidden = !isAtTop && scrollY > 140 && direction === "down" && !mobileMenuOpen;
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -33,12 +37,16 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-espresso/95 backdrop-blur-md border-b border-espresso-border/60 transition-colors duration-200">
+    <header
+      className={`sticky top-0 z-50 w-full bg-espresso/95 backdrop-blur-md border-b border-espresso-border/60 transition-[transform,background-color] duration-300 ease-out-expo ${
+        isHidden ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 h-16 sm:h-20 flex items-center justify-between gap-3 sm:gap-6">
         {/* Brand Monogram */}
         <Link 
           href="/" 
-          className="flex items-center gap-2.5 sm:gap-3 group transition-transform active:scale-[0.98] whitespace-nowrap flex-shrink-0"
+          className="flex items-center gap-2.5 sm:gap-3 group transition-transform duration-150 ease-out-expo active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso rounded-lg whitespace-nowrap flex-shrink-0"
         >
           <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-brass/40 overflow-hidden flex items-center justify-center bg-espresso-surface p-1 group-hover:border-brass transition-colors shadow-sm">
             <img src="/logo.svg" alt="Hamid Shahid Odyssey Logo" className="w-full h-full object-contain" />
@@ -54,10 +62,10 @@ export default function Header() {
             <a
               key={link.label}
               href={link.href}
-              className="text-xs tracking-wider font-mono text-ivory-muted hover:text-brass transition-colors py-1 relative group whitespace-nowrap"
+              className="text-xs tracking-wider font-mono text-ivory-muted hover:text-brass transition-colors py-1 px-1 rounded relative group whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass active:scale-[0.97]"
             >
               {link.label}
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-brass transition-all duration-200 group-hover:w-full" />
+              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-brass transition-all duration-150 ease-out-expo group-hover:w-full" />
             </a>
           ))}
         </nav>
@@ -68,7 +76,7 @@ export default function Header() {
 
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-mono font-medium rounded-full bg-brass text-espresso hover:bg-brass-light transition-all active:scale-[0.98] shadow-sm shadow-brass/10 whitespace-nowrap flex-shrink-0"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-mono font-medium rounded-full bg-brass text-espresso hover:bg-brass-light transition-[transform,background-color,color] duration-150 ease-out-expo active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso shadow-sm shadow-brass/10 whitespace-nowrap flex-shrink-0"
           >
             <span>Get in Touch</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -77,7 +85,7 @@ export default function Header() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center text-ivory-muted hover:text-ivory focus:outline-none focus-visible:ring-2 focus-visible:ring-brass rounded active:scale-95 transition-transform"
+            className="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center text-ivory-muted hover:text-ivory focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso rounded-lg active:scale-95 transition-transform duration-150 ease-out-expo"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={mobileMenuOpen}
           >
@@ -94,13 +102,13 @@ export default function Header() {
             className="fixed inset-0 top-16 bg-espresso-deep/80 backdrop-blur-sm z-40 lg:hidden"
             aria-hidden="true"
           />
-          <div className="relative z-50 lg:hidden border-b border-espresso-border bg-espresso-surface/98 px-5 py-4 flex flex-col gap-1 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="relative z-50 lg:hidden border-b border-espresso-border bg-espresso-surface/98 px-5 py-4 flex flex-col gap-1 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-150 ease-out-expo">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="min-h-[48px] flex items-center justify-between text-xs font-mono tracking-wider uppercase text-ivory-muted hover:text-brass py-2.5 px-3 rounded-lg hover:bg-espresso-elevated/60 transition-colors"
+                className="min-h-[48px] flex items-center justify-between text-xs font-mono tracking-wider uppercase text-ivory-muted hover:text-brass py-2.5 px-3 rounded-lg hover:bg-espresso-elevated/60 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass transition-all duration-150"
               >
                 <span className="flex items-center gap-3">
                   {link.icon}
@@ -112,7 +120,7 @@ export default function Header() {
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="min-h-[48px] flex items-center justify-center gap-2 w-full text-center py-3 text-xs font-mono font-semibold uppercase tracking-wider bg-brass text-espresso rounded-lg mt-2 active:scale-[0.98] shadow-sm shadow-brass/20"
+              className="min-h-[48px] flex items-center justify-center gap-2 w-full text-center py-3 text-xs font-mono font-semibold uppercase tracking-wider bg-brass text-espresso rounded-lg mt-2 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso shadow-sm shadow-brass/20 transition-all duration-150 ease-out-expo"
             >
               <Mail className="w-4 h-4" />
               <span>Get in Touch</span>

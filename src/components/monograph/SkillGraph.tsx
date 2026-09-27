@@ -170,7 +170,7 @@ export default function SkillGraph({ certifications }: SkillGraphProps) {
                       href={cert.fileUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-xs text-brass hover:text-brass-light flex items-center space-x-1 transition-colors py-1 min-h-[44px]"
+                      className="font-mono text-xs text-brass hover:text-brass-light flex items-center space-x-1 transition-all duration-150 ease-out-expo py-1 px-2 rounded min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass active:scale-[0.97]"
                     >
                       <span>View Certificate</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -181,7 +181,7 @@ export default function SkillGraph({ certifications }: SkillGraphProps) {
                       href={cert.verifyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-xs text-brass hover:text-brass-light flex items-center space-x-1 transition-colors py-1 min-h-[44px]"
+                      className="font-mono text-xs text-brass hover:text-brass-light flex items-center space-x-1 transition-all duration-150 ease-out-expo py-1 px-2 rounded min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass active:scale-[0.97]"
                     >
                       <span>Verify Credential</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />

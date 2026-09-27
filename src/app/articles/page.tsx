@@ -84,7 +84,7 @@ export default function ArticlesPage() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`min-h-[40px] px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-sans tracking-wide transition-all whitespace-nowrap flex-shrink-0 ${
+                  className={`min-h-[40px] px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-sans tracking-wide transition-[transform,background-color,border-color,color] duration-150 ease-out-expo whitespace-nowrap flex-shrink-0 active:scale-[0.95] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso ${
                     isActive
                       ? "bg-brass text-espresso font-semibold shadow-sm"
                       : "bg-espresso-surface/60 border border-espresso-border text-ivory-muted hover:text-ivory hover:border-espresso-borderHover"
@@ -107,7 +107,7 @@ export default function ArticlesPage() {
               autoCapitalize="none"
               autoCorrect="off"
               spellCheck={false}
-              className="w-full min-h-[44px] pl-10 pr-4 py-2 rounded-full bg-espresso-surface border border-espresso-border text-base sm:text-xs text-ivory placeholder:text-ivory-faint/60 focus:border-brass focus:outline-none focus:ring-1 focus:ring-brass transition-all"
+              className="w-full min-h-[44px] pl-10 pr-4 py-2 rounded-full bg-espresso-surface border border-espresso-border text-base sm:text-xs text-ivory placeholder:text-ivory-faint/60 focus:outline-none focus-visible:border-brass focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso transition-[border-color,box-shadow] duration-150 ease-out-expo"
             />
           </div>
         </div>
@@ -119,8 +119,8 @@ export default function ArticlesPage() {
               key={article.slug}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="p-5 sm:p-8 rounded-xl border border-espresso-border bg-espresso-surface/60 hover:bg-espresso-surface hover:border-espresso-borderHover transition-all duration-300 flex flex-col justify-between group active:scale-[0.99]"
+              transition={{ duration: 0.3, delay: idx * 0.05 }}
+              className="p-5 sm:p-8 rounded-xl border border-espresso-border bg-espresso-surface/60 hover:bg-espresso-surface hover:border-espresso-borderHover transition-[border-color,background-color,transform] duration-200 ease-out-expo flex flex-col justify-between group active:scale-[0.98]"
             >
               <div>
                 {/* Metadata */}
@@ -135,7 +135,7 @@ export default function ArticlesPage() {
                 </div>
 
                 {/* Title */}
-                <Link href={`/articles/${article.slug}`} className="block group-hover:text-brass-light transition-colors">
+                <Link href={`/articles/${article.slug}`} className="block group-hover:text-brass-light transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass">
                   <h2 className="font-serif text-2xl sm:text-3xl text-ivory font-normal leading-snug mb-3">
                     {article.title}
                   </h2>
@@ -164,7 +164,7 @@ export default function ArticlesPage() {
                 <span className="text-ivory-faint text-[11px]">{article.publishedAt}</span>
                 <Link
                   href={`/articles/${article.slug}`}
-                  className="inline-flex items-center gap-1.5 text-brass font-medium group-hover:translate-x-1 transition-transform min-h-[44px] py-1"
+                  className="inline-flex items-center gap-1.5 text-brass font-medium group-hover:translate-x-1 transition-transform duration-150 ease-out-expo min-h-[44px] py-1 px-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass active:scale-[0.97]"
                 >
                   <span>Read Full Article</span>
                   <ArrowRight className="w-3.5 h-3.5" />

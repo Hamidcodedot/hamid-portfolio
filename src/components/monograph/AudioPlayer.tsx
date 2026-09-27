@@ -155,7 +155,7 @@ export default function AudioPlayer() {
     <button
       onClick={toggleAudio}
       type="button"
-      className="flex items-center justify-center gap-2.5 min-h-[44px] px-3.5 py-2 rounded-full border border-brass/30 bg-espresso-surface/80 hover:bg-espresso-elevated hover:border-brass/60 transition-all duration-200 text-ivory text-xs group active:scale-[0.98] whitespace-nowrap flex-shrink-0"
+      className="flex items-center justify-center gap-2.5 min-h-[44px] px-3.5 py-2 rounded-full border border-brass/30 bg-espresso-surface/80 hover:bg-espresso-elevated hover:border-brass/60 transition-[border-color,background-color,transform] duration-150 ease-out-expo text-ivory text-xs group active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso whitespace-nowrap flex-shrink-0"
       title={isPlaying ? "Mute Odyssey Theme" : "Play Odyssey Theme"}
       aria-label={isPlaying ? "Mute Odyssey Theme" : "Play Odyssey Theme"}
     >

@@ -87,9 +87,9 @@ export default function ArticlePage({ params }: ArticlePageProps) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link
             href="/articles"
-            className="inline-flex items-center gap-2 group text-xs uppercase font-sans tracking-widest text-ivory-muted hover:text-brass transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-2 group text-xs uppercase font-sans tracking-widest text-ivory-muted hover:text-brass transition-colors min-h-[44px] px-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass active:scale-[0.97]"
           >
-            <ArrowLeft className="w-3.5 h-3.5 text-brass group-hover:-translate-x-1 transition-transform" />
+            <ArrowLeft className="w-3.5 h-3.5 text-brass group-hover:-translate-x-1 transition-transform duration-150 ease-out-expo" />
             <span>All Articles</span>
           </Link>
 
@@ -97,7 +97,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
             <AudioPlayer />
             <Link
               href="/"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs uppercase tracking-wider font-sans font-medium rounded border border-espresso-border hover:border-brass/40 text-ivory-muted hover:text-ivory transition-colors min-h-[44px]"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs uppercase tracking-wider font-sans font-medium rounded border border-espresso-border hover:border-brass/40 text-ivory-muted hover:text-ivory transition-colors min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass active:scale-[0.97]"
             >
               <span>Monograph Home</span>
             </Link>
@@ -265,7 +265,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
             </div>
             <Link
               href={`/articles/${nextArticle.slug}`}
-              className="p-6 sm:p-7 rounded-lg border border-espresso-border bg-espresso-surface/60 hover:bg-espresso-surface hover:border-brass/40 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 group"
+              className="p-6 sm:p-7 rounded-lg border border-espresso-border bg-espresso-surface/60 hover:bg-espresso-surface hover:border-brass/40 transition-[border-color,background-color,transform] duration-200 ease-out-expo flex flex-col sm:flex-row sm:items-center justify-between gap-4 group active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
             >
               <div>
                 <span className="text-xs font-sans text-ivory-faint uppercase tracking-wider block mb-1">
@@ -278,7 +278,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
               <div className="inline-flex items-center gap-1.5 text-xs font-sans text-brass font-medium flex-shrink-0">
                 <span>Continue Reading</span>
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150 ease-out-expo" />
               </div>
             </Link>
           </div>

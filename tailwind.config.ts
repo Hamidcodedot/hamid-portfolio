@@ -12,6 +12,11 @@ const config: Config = {
       screens: {
         xs: "475px",
       },
+      transitionTimingFunction: {
+        "out-expo": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "drawer": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "in-out-smooth": "cubic-bezier(0.77, 0, 0.175, 1)",
+      },
       fontFamily: {
         serif: ["var(--font-serif)", "EB Garamond", "Georgia", "serif"],
         sans: ["var(--font-sans)", "Inter", "system-ui", "sans-serif"],

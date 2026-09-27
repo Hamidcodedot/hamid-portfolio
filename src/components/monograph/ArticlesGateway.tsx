@@ -29,7 +29,7 @@ export default function ArticlesGateway({ articles }: ArticlesGatewayProps) {
       <ScrollReveal delayMs={80}>
         <Link
           href="/articles"
-          className="group block p-5 sm:p-8 rounded-2xl bg-espresso-surface border border-espresso-border hover:border-brass/60 transition-all duration-300 active:scale-[0.99]"
+          className="group block p-5 sm:p-8 rounded-2xl bg-espresso-surface border border-espresso-border hover:border-brass/60 transition-[border-color,background-color,transform] duration-200 ease-out-expo active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
         >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 mb-3">
             <span className="font-mono text-[10.5px] sm:text-xs uppercase tracking-wider text-brass font-medium">
@@ -48,7 +48,7 @@ export default function ArticlesGateway({ articles }: ArticlesGatewayProps) {
             In-depth breakdowns covering zero-latency edge LLM proxies, contract drafting automation, 60 FPS WebGL simulation engines, and engineering simplicity.
           </p>
 
-          <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-brass font-semibold group-hover:translate-x-1 transition-transform min-h-[44px]">
+          <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-brass font-semibold group-hover:translate-x-1 transition-transform duration-150 ease-out-expo min-h-[44px]">
             <span>Enter Articles Archive</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </div>

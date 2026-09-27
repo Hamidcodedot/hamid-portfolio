@@ -1,59 +1,73 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useScrollState, ScrollDirection } from "@/hooks/useScrollDirection";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
   className?: string;
   delayMs?: number;
+  distance?: number;
+  duration?: number;
+  directionAware?: boolean;
 }
 
 export default function ScrollReveal({
   children,
   className = "",
   delayMs = 0,
+  distance = 26,
+  duration = 0.45,
+  directionAware = true,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [animKey, setAnimKey] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
+  const { direction } = useScrollState();
+  const [entryDir, setEntryDir] = useState<ScrollDirection>("down");
 
+  const isInView = useInView(ref, {
+    margin: "-30px 0px -30px 0px",
+    once: false,
+  });
+
+  // Track entry direction while off-screen to determine whether to glide in from above or below
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-    let lastTriggerTime = 0;
+    if (!isInView && directionAware) {
+      setEntryDir(direction);
+    }
+  }, [isInView, direction, directionAware]);
 
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const delta = lastScrollY - currentScrollY;
-      const now = Date.now();
-
-      // Detect deliberate upward scroll (delta > 8px) with a debounce lock
-      if (delta > 8 && now - lastTriggerTime > 750) {
-        if (ref.current) {
-          const rect = ref.current.getBoundingClientRect();
-          const isVisible = rect.top < window.innerHeight && rect.bottom > 80;
-          if (isVisible) {
-            lastTriggerTime = now;
-            setAnimKey((prev) => prev + 1);
-          }
-        }
-      }
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const targetOffset = shouldReduceMotion
+    ? 0
+    : !directionAware
+    ? distance
+    : entryDir === "up"
+    ? -distance
+    : distance;
 
   return (
     <motion.div
       ref={ref}
-      key={animKey}
-      initial={animKey > 0 ? { opacity: 0.75, y: 18 } : false}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{
+        opacity: 0,
+        y: targetOffset,
+      }}
+      animate={
+        isInView
+          ? {
+              opacity: 1,
+              y: 0,
+            }
+          : {
+              opacity: 0,
+              y: targetOffset,
+            }
+      }
       transition={{
-        duration: 0.55,
-        delay: delayMs ? delayMs / 1000 : 0,
-        ease: [0.22, 1, 0.36, 1],
+        duration: shouldReduceMotion ? 0.2 : duration,
+        delay: isInView ? (delayMs ? delayMs / 1000 : 0) : 0,
+        ease: [0.23, 1, 0.32, 1], // Emil Kowalski responsive ease-out curve
       }}
       className={className}
     >
