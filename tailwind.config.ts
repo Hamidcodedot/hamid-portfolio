@@ -19,7 +19,9 @@ const config: Config = {
       },
       fontFamily: {
         serif: ["var(--font-serif)", "EB Garamond", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "Inter", "system-ui", "sans-serif"],
+        sans: ["var(--font-manrope)", "var(--font-sans)", "Inter", "system-ui", "sans-serif"],
+        manrope: ["var(--font-manrope)", "Manrope", "system-ui", "sans-serif"],
+        montserrat: ["var(--font-montserrat)", "Montserrat", "system-ui", "sans-serif"],
       },
       colors: {
         espresso: {
@@ -42,6 +44,15 @@ const config: Config = {
           dark: "#8C6D45",
           glow: "rgba(200, 169, 126, 0.2)",
         },
+        highlight: {
+          DEFAULT: "#ffedd5",
+          dark: "#ffedd5",
+          light: "#854d0e",
+        },
+        brand: {
+          DEFAULT: "#ea580c",
+          glow: "rgba(234, 88, 12, 0.2)",
+        },
       },
       keyframes: {
         soundwave: {
@@ -52,10 +63,14 @@ const config: Config = {
           "0%, 100%": { opacity: "1", transform: "scale(1)" },
           "50%": { opacity: "0.4", transform: "scale(1.2)" },
         },
+        "chai-spin": {
+          to: { transform: "translate(-50%, -50%) rotate(360deg)" },
+        },
       },
       animation: {
         soundwave: "soundwave 1.2s ease-in-out infinite",
         pulseSlow: "pulseSlow 2.5s ease-in-out infinite",
+        "chai-spin": "chai-spin 4s linear infinite",
       },
     },
   },

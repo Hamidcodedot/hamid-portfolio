@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { EB_Garamond, Inter } from 'next/font/google';
+import { EB_Garamond, Inter, Manrope, Montserrat } from 'next/font/google';
 import './globals.css';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -16,8 +16,20 @@ const inter = Inter({
   display: 'swap',
 });
 
+const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-manrope',
+  display: 'swap',
+});
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: 'Hamid Shahid | The Odyssey — AI Engineer & Systems Architect',
+  title: 'Hamid Shahid | The Odyssey: AI Engineer & Systems Architect',
   description: 'The personal monograph of Hamid Shahid. Building intelligent software, real-time computer vision, and reliable distributed systems.',
   icons: {
     icon: [
@@ -40,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${ebGaramond.variable} ${inter.variable} dark`} suppressHydrationWarning>
+    <html lang="en" className={`${ebGaramond.variable} ${inter.variable} ${manrope.variable} ${montserrat.variable} dark`} suppressHydrationWarning>
       <body className="font-sans flex flex-col min-h-screen bg-espresso text-ivory antialiased relative selection:bg-brass/30 selection:text-ivory">
         <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
           {children}

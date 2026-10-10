@@ -66,3 +66,37 @@
     rgba(200, 169, 126, 0.4) 100%
   );
 }
+
+/* ChaiUI Signature Utilities */
+.highlight {
+  font-family: var(--font-montserrat), sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: #ffedd5;
+}
+
+:root:not(.dark) .highlight {
+  color: #854d0e;
+}
+
+.card-chai {
+  border-radius: 0.875rem;
+  border: 1px solid rgba(245, 242, 235, 0.08);
+  background: rgba(24, 23, 21, 0.7);
+  backdrop-filter: blur(8px);
+  transition: border-color 200ms ease, opacity 200ms ease;
+}
+
+.card-chai:hover {
+  border-color: rgba(200, 169, 126, 0.35);
+}
+
+/* Asymmetric button corners: solid takes top-right + bottom-left, outline mirrors */
+.btn-asym {
+  border-radius: 0 0.625rem 0 0.625rem;
+}
+
+.btn-asym-mirror {
+  border-radius: 0.625rem 0 0.625rem 0;
+}
+
