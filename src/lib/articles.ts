@@ -52,7 +52,7 @@ export const articles: Article[] = [
         heading: "The Fragility of Direct-to-Provider AI Architecture",
         paragraphs: [
           "When engineering applications powered by Large Language Models, developers frequently make the mistake of having their client or backend communicate directly with LLM providers. In a controlled test environment, this works. In production, it introduces three severe systemic failure modes.",
-          "First, raw personally identifiable information (PII)—including emails, social security numbers, API tokens, and internal employee identities—leaks into third-party cloud telemetry. Second, duplicate prompts across users generate duplicate billing and 800ms+ inference latency. Third, provider rate limits and brief cloud hiccups cause hard application downtime.",
+          "First, raw personally identifiable information (PII), including emails, social security numbers, API tokens, and internal employee identities, leaks into third-party cloud telemetry. Second, duplicate prompts across users generate duplicate billing and 800ms+ inference latency. Third, provider rate limits and brief cloud hiccups cause hard application downtime.",
         ],
         callout: {
           title: "The Invariant of Edge Scrubbing",
@@ -178,7 +178,7 @@ export type ContractClause = z.infer<typeof ContractClauseSchema>;`,
       {
         heading: "The Constraint of the 16.6ms Render Frame",
         paragraphs: [
-          "To achieve a smooth 60 frames per second in the browser, your entire calculation—including input processing, game state simulation, transform matrix updates, and WebGL draw calls—must complete within 16.6 milliseconds.",
+          "To achieve a smooth 60 frames per second in the browser, your entire calculation (including input processing, game state simulation, transform matrix updates, and WebGL draw calls) must complete within 16.6 milliseconds.",
           "When developing Startup Empire 3D, we encountered frame drops caused by typical JavaScript habits: allocating objects inside the animation loop, triggering browser garbage collection pauses, and executing hundreds of individual draw calls.",
         ],
       },
@@ -245,7 +245,7 @@ export function updateBuildingTransforms(instancedMesh: THREE.InstancedMesh, ent
       {
         heading: "Building for Longevity",
         paragraphs: [
-          "When we inspect the systems that survive decades—UNIX utilities, SQLite, basic HTTP protocols—they all share the same DNA: tiny conceptual surfaces, deterministic interfaces, and zero unnecessary dependencies.",
+          "When we inspect the systems that survive decades (UNIX utilities, SQLite, basic HTTP protocols), they all share the same DNA: tiny conceptual surfaces, deterministic interfaces, and zero unnecessary dependencies.",
           "In modern full-stack development, this means choosing standard web APIs over sprawling NPM packages, using explicit TypeScript types instead of untyped generics, and treating your dependency tree as a fortress to be defended.",
         ],
       },

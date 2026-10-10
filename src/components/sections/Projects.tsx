@@ -86,7 +86,7 @@ export default function Projects({ projects }: { projects: ProjectData[] }) {
                     <div>
                       <p className="text-slate-700 dark:text-gray-300 text-xs sm:text-sm italic font-medium">"{project.review_text}"</p>
                       {project.review_author && (
-                        <p className="text-teal-600 dark:text-teal-400 text-[11px] font-mono font-semibold mt-1.5">— {project.review_author}</p>
+                        <p className="text-teal-600 dark:text-teal-400 text-[11px] font-mono font-semibold mt-1.5">- {project.review_author}</p>
                       )}
                     </div>
                   </div>

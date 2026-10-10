@@ -6,7 +6,7 @@ export const runtime = "edge";
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const title = searchParams.get("title") || "Hamid Shahid — The Odyssey";
+    const title = searchParams.get("title") || "Hamid Shahid: The Odyssey";
     const category = searchParams.get("category") || "Engineering Field Notes";
     const readTime = searchParams.get("readTime") || "5 min read";
 

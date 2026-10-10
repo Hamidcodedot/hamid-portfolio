@@ -126,7 +126,7 @@ export default function Journey({ education }: JourneyProps) {
                     Leadership &amp; Venture
                   </span>
                   <span className="font-mono text-[10px] text-ivory-faint uppercase">
-                    2024 — Present
+                    2024 - Present
                   </span>
                 </div>
 

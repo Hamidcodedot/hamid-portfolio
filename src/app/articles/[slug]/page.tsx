@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const article = getArticleBySlug(params.slug);
   if (!article) {
     return {
-      title: "Article Not Found — Hamid Shahid",
+      title: "Article Not Found: Hamid Shahid",
     };
   }
 
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const ogImageUrl = `${siteUrl}/api/og?title=${encodeURIComponent(article.title)}&category=${encodeURIComponent(article.category)}&readTime=${encodeURIComponent(article.readTime)}`;
 
   return {
-    title: `${article.title} — Hamid Shahid`,
+    title: `${article.title} | Hamid Shahid`,
     description: article.excerpt,
     authors: [{ name: article.author.name, url: siteUrl }],
     keywords: article.tags,
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       title: article.title,
       description: article.excerpt,
       url: articleUrl,
-      siteName: "Hamid Shahid — The Odyssey",
+      siteName: "Hamid Shahid: The Odyssey",
       publishedTime: article.isoDate,
       authors: [article.author.name],
       images: [
