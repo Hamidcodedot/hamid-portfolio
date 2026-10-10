@@ -73,9 +73,9 @@ export default function WorkTree({ pillars }: WorkTreeProps) {
                     setActiveBranch(pillar.id);
                   }
                 }}
-                className={`p-5 sm:p-7 rounded-2xl border transition-[border-color,background-color,box-shadow,transform] duration-200 ease-out-expo cursor-pointer flex flex-col justify-between relative group h-full active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso ${
+                className={`p-5 sm:p-7 rounded-2xl border transition-[border-color,background-color,transform] duration-200 ease-out-expo cursor-pointer flex flex-col justify-between relative group h-full active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso ${
                   isActive
-                    ? "bg-espresso-surface border-brass shadow-lg shadow-brass/5"
+                    ? "bg-espresso-surface border-brass"
                     : "bg-espresso-surface/50 border-espresso-border hover:border-espresso-borderHover hover:bg-espresso-surface/80"
                 }`}
               >

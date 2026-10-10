@@ -84,7 +84,7 @@ export default function Articles({ articles }: ArticlesProps) {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="w-full max-w-2xl bg-espresso-surface border border-brass/30 p-5 sm:p-8 rounded-lg shadow-2xl relative max-h-[90vh] overflow-y-auto overscroll-contain"
+              className="w-full max-w-2xl bg-espresso-surface border border-brass/40 p-5 sm:p-8 rounded-xl relative max-h-[90vh] overflow-y-auto overscroll-contain"
             >
               <button
                 onClick={() => setSelectedArticle(null)}
