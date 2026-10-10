@@ -52,7 +52,7 @@ export default function Header() {
             <img src="/logo.svg" alt="Hamid Shahid Odyssey Logo" className="w-full h-full object-contain" />
           </div>
           <span className="font-serif tracking-wide text-sm sm:text-base font-medium text-ivory group-hover:text-brass transition-colors">
-            Hamid Shahid <span className="text-ivory-faint font-mono text-[11px] font-light tracking-wider hidden xs:inline">— Odyssey</span>
+            Hamid Shahid <span className="text-ivory-faint font-mono text-[11px] font-light tracking-wider hidden xs:inline">: Odyssey</span>
           </span>
         </Link>
 
@@ -76,7 +76,7 @@ export default function Header() {
 
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-mono font-medium rounded-full bg-brass text-espresso hover:bg-brass-light transition-[transform,background-color,color] duration-150 ease-out-expo active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso shadow-sm shadow-brass/10 whitespace-nowrap flex-shrink-0"
+            className="btn-asym hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-mono font-semibold bg-ivory text-espresso hover:bg-ivory-muted transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso whitespace-nowrap flex-shrink-0"
           >
             <span>Get in Touch</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -102,7 +102,7 @@ export default function Header() {
             className="fixed inset-0 top-16 bg-espresso-deep/80 backdrop-blur-sm z-40 lg:hidden"
             aria-hidden="true"
           />
-          <div className="relative z-50 lg:hidden border-b border-espresso-border bg-espresso-surface/98 px-5 py-4 flex flex-col gap-1 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-150 ease-out-expo">
+          <div className="relative z-50 lg:hidden border-b border-espresso-border bg-espresso-surface/98 px-5 py-4 flex flex-col gap-1 animate-in fade-in slide-in-from-top-2 duration-150 ease-out-expo">
             {navLinks.map((link) => (
               <a
                 key={link.label}

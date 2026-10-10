@@ -5,6 +5,8 @@ import { AboutData } from "@/lib/data";
 import { ArrowDown, ArrowUpRight, Compass, FileText } from "lucide-react";
 import OdysseyVesselRotator from "./OdysseyVesselRotator";
 import ScrollReveal from "./ScrollReveal";
+import AnimatedBadge from "@/components/ui/AnimatedBadge";
+import Highlight from "@/components/ui/Highlight";
 
 interface HeroProps {
   data: AboutData;
@@ -19,14 +21,12 @@ export default function Hero({ data }: HeroProps) {
 
   return (
     <section id="about" className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-10 sm:pt-16 md:pt-24 pb-14 sm:pb-20 border-b border-espresso-border overflow-hidden">
-      {/* Top Archival Status Indicator Pill */}
+      {/* Top Status Indicator Pill with ChaiUI Animated Glint */}
       <ScrollReveal delayMs={0} className="flex justify-center mb-8 sm:mb-10">
-        <div className="inline-flex items-center space-x-2 px-3.5 sm:px-4 py-1.5 rounded-full border border-brass/35 bg-espresso-surface/90 shadow-inner">
+        <AnimatedBadge>
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.7)] flex-shrink-0" />
-          <span className="font-mono text-[11px] sm:text-xs tracking-normal text-ivory-muted font-normal">
-            Available for Projects &amp; Collaboration
-          </span>
-        </div>
+          <span>Available for Projects &amp; Collaboration</span>
+        </AnimatedBadge>
       </ScrollReveal>
 
       {/* Centerpiece: Circular Archival Frame with Monogram & Radial Orbit */}
@@ -44,8 +44,8 @@ export default function Hero({ data }: HeroProps) {
             EPOCH MMXXVI
           </span>
 
-          {/* Portrait Frame */}
-          <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border-2 border-brass/80 p-1 bg-gradient-to-b from-brass/30 to-espresso-surface shadow-xl">
+          {/* Portrait Frame (Hairline depth without muddy shadow) */}
+          <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border-2 border-brass/80 p-1 bg-gradient-to-b from-brass/30 to-espresso-surface">
             <div className="w-full h-full rounded-full overflow-hidden relative border border-brass/40 bg-espresso-deep group">
               <Image
                 src={data.photo_url || "/profile.png"}
@@ -72,18 +72,18 @@ export default function Hero({ data }: HeroProps) {
             <OdysseyVesselRotator specializations={specializations} />
           </div>
 
-          {/* Concise Intellectual Bio */}
+          {/* Concise Intellectual Bio with ChaiUI Highlight Phrase */}
           <p className="font-sans text-xs xs:text-sm sm:text-base md:text-lg text-ivory-muted max-w-2xl mx-auto leading-relaxed font-light mb-8 sm:mb-10 px-2 sm:px-0">
-            Architecting high-throughput inference runtimes, deterministic cognitive pipelines, and low-latency distributed backends with mathematical rigor and craft.
+            Architecting high-throughput inference runtimes, <Highlight>deterministic cognitive pipelines</Highlight>, and low-latency distributed backends with mathematical rigor and craft.
           </p>
         </ScrollReveal>
 
-        {/* Hero Actions Cluster */}
+        {/* Hero Actions Cluster with ChaiUI Asymmetric Button Signatures */}
         <ScrollReveal delayMs={150}>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2.5 sm:gap-4 mb-10 sm:mb-14 w-full sm:w-auto max-w-xs sm:max-w-none mx-auto">
             <a
               href="#architecture"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[46px] rounded-full bg-brass text-espresso font-sans text-xs sm:text-sm font-semibold hover:bg-brass-light transition-[transform,background-color,color] duration-150 ease-out-expo active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso shadow-md shadow-brass/10"
+              className="btn-asym inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[46px] bg-ivory text-espresso font-sans text-xs sm:text-sm font-semibold hover:bg-ivory-muted transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
             >
               <span>Explore Architecture</span>
               <ArrowDown className="w-3.5 h-3.5" />
@@ -91,7 +91,7 @@ export default function Hero({ data }: HeroProps) {
 
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[46px] rounded-full border border-espresso-border bg-espresso-surface/80 hover:border-brass/70 text-ivory font-sans text-xs sm:text-sm font-medium transition-[transform,border-color,background-color] duration-150 ease-out-expo active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
+              className="btn-asym-mirror inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[46px] border border-espresso-border bg-espresso-surface/80 hover:border-brass/70 text-ivory font-sans text-xs sm:text-sm font-medium transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
             >
               <span>Schedule Consultation</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -101,7 +101,7 @@ export default function Hero({ data }: HeroProps) {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[46px] rounded-full border border-espresso-border bg-espresso-surface/40 hover:border-brass/40 text-ivory-muted hover:text-ivory font-sans text-xs sm:text-sm font-medium transition-[transform,border-color,color] duration-150 ease-out-expo active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[46px] rounded-lg border border-espresso-border bg-espresso-surface/40 hover:border-brass/40 text-ivory-muted hover:text-ivory font-sans text-xs sm:text-sm font-medium transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
             >
               <FileText className="w-3.5 h-3.5 text-brass" />
               <span>Curriculum Vitae</span>

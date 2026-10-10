@@ -91,7 +91,7 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-[#131315]/95 backdrop-blur-2xl border-b border-slate-200 dark:border-white/10 shadow-2xl">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-[#131315]/95 backdrop-blur-2xl border-b border-slate-200 dark:border-white/10">
           <ul className="flex flex-col py-4 px-6 space-y-3">
             {navLinks.map((link) => (
               <li key={link.name}>

@@ -21,7 +21,7 @@ export default function MobileQuickDock() {
           aria-label="Mobile quick navigation dock"
           className="fixed bottom-4 left-4 right-4 z-40 sm:hidden mx-auto max-w-xs"
         >
-          <div className="bg-espresso-deep/92 backdrop-blur-lg border border-brass/35 shadow-2xl rounded-full p-1.5 flex items-center justify-between px-3">
+          <div className="bg-espresso-deep/95 backdrop-blur-lg border border-brass/40 rounded-full p-1.5 flex items-center justify-between px-3">
             <a
               href="/#about"
               className="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] rounded-full text-ivory-muted hover:text-brass transition-[transform,color] duration-150 ease-out-expo active:scale-[0.93] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
