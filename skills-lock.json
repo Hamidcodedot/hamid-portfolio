@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "skills": {
+    "chaiui": {
+      "source": "ui.chaicode.com",
+      "sourceUrl": "https://ui.chaicode.com",
+      "sourceType": "well-known",
+      "computedHash": "02cdb61a33a98a79e0d5793af1488427b219062d3d41d4a0563e2d958169bae5",
+      "wellKnownDigest": "sha256:39d2915009a2f31b3e97fe071829a28ed61955d2778a9ac9830fae1e0768150e"
+    },
+    "chaiui-review": {
+      "source": "ui.chaicode.com",
+      "sourceUrl": "https://ui.chaicode.com",
+      "sourceType": "well-known",
+      "computedHash": "47e97634b300b32c97c27f51dd60037b677acca37d3e41650a25011440502fde",
+      "wellKnownDigest": "sha256:e9ccb5a90d1b853560799347dd391373fbbe992acc9fee674bae525acb9816f7"
+    }
+  }
+}
