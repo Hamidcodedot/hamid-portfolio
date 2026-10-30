@@ -1,6 +1,7 @@
 import ScrollProgress from "@/components/monograph/ScrollProgress";
 import Header from "@/components/monograph/Header";
 import Hero from "@/components/monograph/Hero";
+import AmbientMatrix from "@/components/monograph/AmbientMatrix";
 import WorkTree from "@/components/monograph/WorkTree";
 import SkillGraph from "@/components/monograph/SkillGraph";
 import ArticlesGateway from "@/components/monograph/ArticlesGateway";
@@ -16,6 +17,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col w-full max-w-full min-w-0 overflow-x-hidden bg-espresso text-ivory relative canvas-grain">
+      <AmbientMatrix />
       <ScrollProgress />
       <Header />
       <Hero data={data.about} />
