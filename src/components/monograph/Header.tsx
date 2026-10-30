@@ -3,14 +3,20 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import AudioPlayer from "./AudioPlayer";
-import { Menu, X, ArrowUpRight, Compass, Layers, GitBranch, BookOpen, GraduationCap, Mail } from "lucide-react";
-import { useScrollState } from "@/hooks/useScrollDirection";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { direction, isAtTop, scrollY } = useScrollState();
+  const [scrolled, setScrolled] = useState(false);
 
-  const isHidden = !isAtTop && scrollY > 140 && direction === "down" && !mobileMenuOpen;
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -29,102 +35,108 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: "About", href: "/#about", icon: <Compass className="w-4 h-4 text-brass" /> },
-    { label: "Systems", href: "/#work-tree", icon: <GitBranch className="w-4 h-4 text-brass" /> },
-    { label: "Architecture", href: "/#architecture", icon: <Layers className="w-4 h-4 text-brass" /> },
-    { label: "Articles", href: "/articles", icon: <BookOpen className="w-4 h-4 text-brass" /> },
-    { label: "Education", href: "/#journey", icon: <GraduationCap className="w-4 h-4 text-brass" /> },
+    { label: "About", href: "/#about" },
+    { label: "Projects", href: "/#work-tree" },
+    { label: "Stack", href: "/#architecture" },
+    { label: "Articles", href: "/articles" },
+    { label: "Journey", href: "/#journey" },
   ];
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full bg-espresso/95 backdrop-blur-md border-b border-espresso-border/60 transition-[transform,background-color] duration-300 ease-out-expo ${
-        isHidden ? "-translate-y-full" : "translate-y-0"
+      className={`sticky top-0 z-50 w-full transition-[background-color,backdrop-filter,border-color] duration-300 ${
+        scrolled
+          ? "bg-black/60 backdrop-blur-md border-b border-orange-50/10"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 h-16 sm:h-20 flex items-center justify-between gap-3 sm:gap-6">
-        {/* Brand Monogram */}
-        <Link 
-          href="/" 
-          className="flex items-center gap-2.5 sm:gap-3 group transition-transform duration-150 ease-out-expo active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso rounded-lg whitespace-nowrap flex-shrink-0"
+      <nav className="max-w-6xl mx-auto px-6 sm:px-12 h-16 sm:h-20 flex items-center justify-between gap-6">
+        {/* Brand Identity */}
+        <Link
+          href="/"
+          className="flex items-center gap-3 group transition-transform duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass rounded-lg"
+          aria-label="Hamid Shahid home"
         >
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-brass/40 overflow-hidden flex items-center justify-center bg-espresso-surface p-1 group-hover:border-brass transition-colors shadow-sm">
-            <img src="/logo.svg" alt="Hamid Shahid Odyssey Logo" className="w-full h-full object-contain" />
+          <div className="w-8 h-8 rounded-full border border-orange-50/15 bg-black/30 p-1 flex items-center justify-center group-hover:border-brass/70 transition-colors shadow-xs">
+            <img src="/logo.svg" alt="Hamid Shahid" className="w-full h-full object-contain" />
           </div>
-          <span className="font-serif tracking-wide text-sm sm:text-base font-medium text-ivory group-hover:text-brass transition-colors">
-            Hamid Shahid <span className="text-ivory-faint font-mono text-[11px] font-light tracking-wider hidden xs:inline">: Odyssey</span>
+          <span className="font-sans font-semibold text-sm sm:text-base tracking-tight text-white group-hover:text-amber-100 transition-colors">
+            Hamid Shahid
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-8">
+        {/* Center Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-xs tracking-wider font-mono text-ivory-muted hover:text-brass transition-colors py-1 px-1 rounded relative group whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass active:scale-[0.97]"
+              className="text-xs sm:text-[13px] font-sans font-medium text-neutral-400 hover:text-white transition-colors duration-150 py-1"
             >
               {link.label}
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-brass transition-all duration-150 ease-out-expo group-hover:w-full" />
             </a>
           ))}
-        </nav>
+        </div>
 
-        {/* Trailing Controls: Audio & Contact */}
-        <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
-          <AudioPlayer />
+        {/* Right Trailing Controls */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          {/* Subtle Compact Audio Soundscape Toggle */}
+          <AudioPlayer compact={true} />
 
+          {/* ChaiUI Asymmetric Primary Solid Button */}
           <a
             href="#contact"
-            className="btn-asym hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-mono font-semibold bg-ivory text-espresso hover:bg-ivory-muted transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso whitespace-nowrap flex-shrink-0"
+            className="btn-asym hidden sm:inline-flex items-center gap-1.5 h-9 bg-white text-neutral-950 px-4 text-xs font-semibold hover:bg-neutral-200 transition-colors duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
           >
-            <span>Get in Touch</span>
+            <span>Get in touch</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
 
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center text-ivory-muted hover:text-ivory focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso rounded-lg active:scale-95 transition-transform duration-150 ease-out-expo"
+            className="md:hidden w-9 h-9 flex items-center justify-center text-neutral-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brass rounded-lg active:scale-95 transition-transform"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="w-5 h-5 text-brass" /> : <Menu className="w-5 h-5 text-ivory" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-neutral-300" />}
           </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile Backdrop & Drawer */}
+      {/* Mobile Drawer (ChaiUI recipe dropdown panel) */}
       {mobileMenuOpen && (
         <>
           <div
             onClick={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 top-16 bg-espresso-deep/80 backdrop-blur-sm z-40 lg:hidden"
+            className="fixed inset-0 top-16 bg-black/60 backdrop-blur-sm z-40 md:hidden"
             aria-hidden="true"
           />
-          <div className="relative z-50 lg:hidden border-b border-espresso-border bg-espresso-surface/98 px-5 py-4 flex flex-col gap-1 animate-in fade-in slide-in-from-top-2 duration-150 ease-out-expo">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="min-h-[48px] flex items-center justify-between text-xs font-mono tracking-wider uppercase text-ivory-muted hover:text-brass py-2.5 px-3 rounded-lg hover:bg-espresso-elevated/60 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass transition-all duration-150"
-              >
-                <span className="flex items-center gap-3">
-                  {link.icon}
+          <div className="relative z-50 md:hidden px-6 pb-6 pt-2">
+            <div className="rounded-xl border border-orange-50/15 bg-black/90 p-4 backdrop-blur-lg flex flex-col gap-1 shadow-lg">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2.5 px-3 rounded-lg text-sm font-medium text-neutral-300 hover:text-white hover:bg-white/5 flex items-center justify-between transition-colors"
+                >
                   <span>{link.label}</span>
-                </span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-ivory-faint" />
-              </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="min-h-[48px] flex items-center justify-center gap-2 w-full text-center py-3 text-xs font-mono font-semibold uppercase tracking-wider bg-brass text-espresso rounded-lg mt-2 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-espresso shadow-sm shadow-brass/20 transition-all duration-150 ease-out-expo"
-            >
-              <Mail className="w-4 h-4" />
-              <span>Get in Touch</span>
-            </a>
+                  <ArrowUpRight className="w-4 h-4 text-neutral-500" />
+                </a>
+              ))}
+
+              <div className="pt-3 mt-2 border-t border-orange-50/10">
+                <a
+                  href="#contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="btn-asym w-full flex items-center justify-center gap-2 h-10 bg-white text-neutral-950 text-xs font-semibold hover:bg-neutral-200 transition-colors"
+                >
+                  <span>Get in touch</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
           </div>
         </>
       )}

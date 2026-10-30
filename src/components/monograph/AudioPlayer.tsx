@@ -3,7 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
-export default function AudioPlayer() {
+interface AudioPlayerProps {
+  compact?: boolean;
+}
+
+export default function AudioPlayer({ compact = false }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const audioContextRef = useRef<AudioContext | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
@@ -150,6 +154,28 @@ export default function AudioPlayer() {
       }
     };
   }, []);
+
+  if (compact) {
+    return (
+      <button
+        onClick={toggleAudio}
+        type="button"
+        className="w-9 h-9 rounded-full border border-orange-50/15 bg-black/25 hover:border-orange-50/35 hover:bg-black/40 flex items-center justify-center text-neutral-400 hover:text-white transition-all duration-150 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass"
+        title={isPlaying ? "Mute ambient soundtrack" : "Play ambient soundtrack"}
+        aria-label={isPlaying ? "Mute ambient soundtrack" : "Play ambient soundtrack"}
+      >
+        {isPlaying ? (
+          <div className="flex items-center gap-0.5 h-3.5 w-3.5 justify-center">
+            <span className="w-0.5 bg-amber-200 rounded-full h-3 animate-soundwave" style={{ animationDelay: "0ms" }} />
+            <span className="w-0.5 bg-amber-200 rounded-full h-3.5 animate-soundwave" style={{ animationDelay: "200ms" }} />
+            <span className="w-0.5 bg-amber-200 rounded-full h-2 animate-soundwave" style={{ animationDelay: "400ms" }} />
+          </div>
+        ) : (
+          <VolumeX className="w-4 h-4 text-neutral-400" />
+        )}
+      </button>
+    );
+  }
 
   return (
     <button
