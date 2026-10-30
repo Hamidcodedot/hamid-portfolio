@@ -27,6 +27,9 @@ import {
   SiScikitlearn,
   SiCplusplus,
   SiGoogle,
+  SiRedis,
+  SiHuggingface,
+  SiOpentelemetry,
 } from "react-icons/si";
 import {
   Brain,
@@ -49,6 +52,13 @@ import {
   Database,
   Layers,
   Compass,
+  Cloud,
+  Search,
+  Bot,
+  Infinity as InfinityIcon,
+  Link2,
+  Hammer,
+  Cpu,
 } from "lucide-react";
 
 interface TechLogoProps {
@@ -65,7 +75,19 @@ export function getTechIcon(name: string, className: string = "w-4 h-4") {
   if (normalized.includes("react")) return <SiReact className={className} />;
   if (normalized.includes("next")) return <SiNextdotjs className={className} />;
   if (normalized.includes("node")) return <SiNodedotjs className={className} />;
-  if (normalized.includes("postgres")) return <SiPostgresql className={className} />;
+  if (normalized.includes("postgres") || normalized.includes("pgvector")) return <SiPostgresql className={className} />;
+  if (normalized.includes("redis")) return <SiRedis className={className} />;
+  if (normalized.includes("hugging face") || normalized.includes("huggingface")) return <SiHuggingface className={className} />;
+  if (normalized.includes("opentelemetry")) return <SiOpentelemetry className={className} />;
+  if (normalized.includes("langgraph")) return <Network className={className} />;
+  if (normalized.includes("langchain")) return <Link2 className={className} />;
+  if (normalized.includes("mcp")) return <Hammer className={className} />;
+  if (normalized.includes("ollama")) return <Bot className={className} />;
+  if (normalized.includes("faiss")) return <InfinityIcon className={className} />;
+  if (normalized.includes("jina")) return <Sparkles className={className} />;
+  if (normalized.includes("rag")) return <Search className={className} />;
+  if (normalized.includes("aws")) return <Cloud className={className} />;
+  if (normalized.includes("groq")) return <Zap className={className} />;
   if (normalized.includes("tailwind")) return <SiTailwindcss className={className} />;
   if (normalized.includes("python")) return <SiPython className={className} />;
   if (normalized.includes("docker")) return <SiDocker className={className} />;
@@ -78,6 +100,13 @@ export function getTechIcon(name: string, className: string = "w-4 h-4") {
   if (normalized.includes("linux")) return <SiLinux className={className} />;
   if (normalized.includes("github") || normalized.includes("ci/cd")) return <SiGithubactions className={className} />;
   if (normalized.includes("vercel")) return <SiVercel className={className} />;
+  if (normalized.includes("supabase")) return <Database className={className} />;
+  if (normalized.includes("dspy")) return <Brain className={className} />;
+  if (normalized.includes("instructor") || normalized.includes("pydantic")) return <Workflow className={className} />;
+  if (normalized === "git" || normalized.startsWith("git ")) return <GitBranch className={className} />;
+  if (normalized.includes("embedding")) return <InfinityIcon className={className} />;
+  if (normalized.includes("similarity")) return <Sigma className={className} />;
+  if (normalized.includes("caching") || normalized.includes("cache")) return <Zap className={className} />;
   if (normalized.includes("tensorflow") || normalized.includes("keras")) return <SiTensorflow className={className} />;
   if (normalized.includes("pytorch")) return <SiPytorch className={className} />;
   if (normalized.includes("pandas")) return <SiPandas className={className} />;
