@@ -113,25 +113,27 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
   ];
 
   return (
-    <section id="activity" className="py-14 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 max-w-6xl mx-auto border-t border-espresso-border w-full max-w-full min-w-0 overflow-hidden">
+    <section id="activity" className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-14 sm:py-20 md:py-28 border-t border-espresso-border relative">
       {/* Section Header */}
-      <ScrollReveal className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-3 sm:gap-4">
+      <ScrollReveal className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4">
         <div>
           <div className="flex items-center gap-2 mb-2">
             <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.24em] text-brass">
               CHAPTER V // VERIFIABLE CODE CADENCE
             </span>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-[9.5px] sm:text-[10px] font-mono text-emerald-300">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[4px] bg-emerald-500/10 border border-emerald-500/25 text-[10px] font-mono text-emerald-400">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>{isLive ? "LIVE GITHUB SYNC" : "GITHUB TELEMETRY"}</span>
             </div>
           </div>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-ivory font-normal">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-ivory font-normal">
             GitHub Activity Tapestry
           </h2>
         </div>
         <p className="font-sans text-xs sm:text-sm text-ivory-muted max-w-md font-light leading-relaxed">
-          A continuous, live record of production commits, architectural refinements, and open-source contributions pulled directly from GitHub.
+          A continuous, live record of production commits,{" "}
+          <span className="font-montserrat font-medium text-amber-100">architectural refinements</span>,
+          and open-source contributions pulled directly from GitHub.
         </p>
       </ScrollReveal>
 
@@ -139,7 +141,7 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
         {statMetrics.map((stat, idx) => (
           <ScrollReveal key={stat.label} delayMs={idx * 60}>
-            <div className="p-4 sm:p-5 rounded-2xl border border-espresso-border bg-espresso-surface/60 flex items-center justify-between h-full hover:border-brass/30 transition-colors">
+            <div className="p-4 sm:p-5 rounded-xl border border-espresso-border bg-espresso-surface/65 flex items-center justify-between h-full hover:border-brass/35 transition-colors">
               <div>
                 <div className="text-[10px] sm:text-[11px] font-mono text-ivory-faint uppercase tracking-wider mb-1">
                   {stat.label}
@@ -161,7 +163,7 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
 
       {/* The Woven Tapestry Grid Container */}
       <ScrollReveal delayMs={100}>
-        <div className="p-4 sm:p-7 rounded-2xl border border-espresso-border bg-espresso-surface/70 mb-6 sm:mb-8 w-full max-w-full min-w-0 overflow-hidden shadow-sm hover:border-brass/30 transition-colors">
+        <div className="p-4 sm:p-7 rounded-xl border border-espresso-border bg-espresso-surface/70 mb-6 sm:mb-8 w-full max-w-full min-w-0 overflow-hidden shadow-xs hover:border-brass/30 transition-colors">
           <div className="flex flex-wrap items-center justify-between mb-4 sm:mb-5 gap-2 text-xs font-sans text-ivory-faint">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-brass animate-pulse" />
@@ -220,7 +222,7 @@ export default function ActivityTapestry({ github }: ActivityTapestryProps) {
 
       {/* Languages Spectrum Bar */}
       <ScrollReveal delayMs={150}>
-        <div className="p-5 sm:p-7 rounded-2xl border border-espresso-border bg-espresso-surface/40 hover:border-brass/30 transition-colors">
+        <div className="p-5 sm:p-7 rounded-xl border border-espresso-border bg-espresso-surface/40 hover:border-brass/30 transition-colors">
           <div className="flex items-center justify-between mb-3 text-xs font-sans">
             <span className="font-mono text-[11px] sm:text-xs uppercase tracking-widest text-ivory-faint">
               Core Production Languages Breakdown
