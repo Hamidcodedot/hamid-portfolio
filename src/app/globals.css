@@ -28,17 +28,25 @@
     max-width: 100vw;
   }
 
-  /* Archival refined scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+  /* Modern Baseline scrollbar styling */
+  html {
+    scrollbar-color: #2a2825 #0f0e0d;
+    scrollbar-width: thin;
   }
-  ::-webkit-scrollbar-track {
-    background: #0f0e0d;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #2a2825;
-    border-radius: 2px;
+
+  /* Legacy fallback for WebKit engines without standard scrollbar-color support */
+  @supports not (scrollbar-color: auto) {
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f0e0d;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a2825;
+      border-radius: 2px;
+    }
   }
   /* Prevent mobile tap highlight gray box */
   * {
